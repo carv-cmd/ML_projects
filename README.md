@@ -12,7 +12,7 @@ I know 'dont go reinventing the wheel', you can always copy paste someone elses 
 I try not to do that because its a terrible way to learn. 
 Therefore, most of my code is 'from scratch'..
 So please feel free to give me any tips or critque. Trust me I dont mind. 
-i.e. I try to reference the documentation way more often then stack overflow. 
+I try to reference the documentation way more often then stack overflow. 
 But where I do use others code I will give credit in that projects repository txt file.
 
 Any advanced math, machine learning, or python, etc. seen here, 

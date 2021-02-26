@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from matplotlib import style
 import logging as logs
 
-# log change in gradient over time (optional)
+# log change in gradient over time (optional -- overwrites prev log)
 logs.basicConfig(filename='lin_regs.log', filemode='w', level=logs.INFO)
 
 # pandas.read() to pull external data
@@ -20,9 +20,9 @@ def gradient_descent(L):
     """
     Uses numpy to horizontally calc total hypothesis error for given feature vectors
     Store temp 'm_grad'/'b_grad' vars while calculating hypothesis for each data point
-    Simultaneously sum errors, apply learning rate, and add/subtract from total 'm' and 'b'
+    Simultaneously sum errors, apply learning rate, then update thetas ('m'/'b') respectively 
     :param L: 'Learning Rate' or 'step size' taken in opposite direction of gradient
-    :return: optimal values of 'm' and 'b' for given data set
+    :return: optimal values of 'm' and 'b' for given data set regression line
     """
     # initialize return variables
     m = 0

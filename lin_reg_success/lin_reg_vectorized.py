@@ -18,7 +18,7 @@ y = data[:, 1]
 ####################################################
 def gradient_descent(L):
     """
-    Uses numpy to horizontally calc total hypothesis error given feature vectors
+    Uses numpy to horizontally calc total hypothesis error for given feature vectors
     Store temp 'm_grad'/'b_grad' vars while calculating hypothesis for each data point
     Simultaneously sum errors, apply learning rate, and add/subtract from total 'm' and 'b'
     :param L: 'Learning Rate' or 'step size' taken in opposite direction of gradient

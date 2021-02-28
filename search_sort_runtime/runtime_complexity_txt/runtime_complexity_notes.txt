@@ -1,0 +1,212 @@
+What is Algorithm Efficiency and Runtime Complexity?
+
+################################################################
+################################################################
+What metrics can we use to define algorithm efficiency?
+
+Algo_1 -> solve problem in 10 minutes, but only requires 20GB
+Algo_2 -> solve problem in 10 seconds, but requires 10TB to do so
+Algo_3 -> solve problem in 10sec/12GB if list is sorted, otherwise 10min/100GB required
+
+1a). Runtime
+1b). --> If runtime was the determining factor, Algo_1 would be a better choice
+
+2a). Memory Space
+2b). --> If memory space is determining factor, Algo_2 would be ideal
+
+3a). Problem Specific Metrics
+- Thing such like: 'number of comparisons' when sorting a list
+- Or: "number of (is guess_num == index_val)" operations when searching a list
+3b). --> If Algo_3 is sorted, run search algorithm
+3c). --> If Algo_3 is unsorted, determine cost/benefit of sorting list first
+
+
+################################################################
+################################################################
+Though the metric most commonly used and referred to is 'Runtime Complexity'
+In layman's terms, runtime complexity is the "time units required to solve particular problem"
+While this isn't technically wrong, we cannot use time as an accurate measure of efficiency
+
+The speed at which my Razer can process data dwarfs that of a standard workstation
+A script that runs in minimal time on my machine, may completely crash the next computer
+Just measuring time cant account for differences in hardware, software, OS, background tasks, etc
+There are simply to many random variables to influence any could be accurate result
+The confluence of factors comparing diff. algos across diff. machines makes for a shit experiment anyway
+
+Before you say "wHaT iF wE jUsT rAn tHE diFFeRenT alGOs oN ThE sAMe maChInE"
+To accurately test runtime efficiency in 'time' context needs a 'control variable' workstation
+And even still, if test_1:(x=10sec, y=8sec), then test_2:(x=9sec, y=11sec), how do we determine efficiency?
+
+Remember, no globally calibrated 'Runtime Complexity Test' server for mfs to use, that's fucking stupid
+Instead we need a method that is independent of hardware, software, etc. specifications
+
+################################################################
+################################################################
+We do this by assuming a simplified 'model' of a computer
+Of which this model contains 3 steps or principles for algorithm analysis
+
+1a). Only a 'Single CPU' to work with
+1b). In other words we don't take into account multi-processing, multi-threading, etc.
+1c). Avoids the idea we can process multiple things in the same time unit, mitigating hardware influence
+
+2a). All data, so basically whatever work were doing with our algorithm will be stored in RAM
+2b). Essentially just means we have a very fast access to the data, no searching the SSD
+
+3a). Every access is going to take the same amount of time (constant time)
+3b). Irrelevant if were accessing dataSetA or dataSetB, its going to take the same amount of access time
+
+This model lets us look at the efficiency of the logic of the algorithms, mitigating most random variables
+
+
+################################################################
+################################################################
+Now have a model or framework to work with but what is Runtime Complexity?
+
+To explain runtime we must introduce 'Primitive Operations'
+Essentially just operations all which take 'one time unit' to perform (whatever standard time unit)
+So unless we define something else, all primitive operations will take one time unit
+
+Primitive operations are those such like:
+- Assigning a Value to a Variable (a = 10)
+- Addition/Subtraction Operations (a = 10 + b)/(a = 10 - b)
+- Logical Operators (a and b)
+- Comparison Operators (a > b)
+
+All the above operations require one time unit to perform. From this we can approximate Runtime
+An Algorithm's Runtime is just than the amount of primitive operations required to solve the problem
+Mitigates most random variables as primitive operations and their required time units are scalable metrics
+- Razer Blade 15: (10 primitive ops = .0001sec)
+- Mid2015 MacBook Pro: (10 primitive ops = .01sec)
+While the razer is obviously much faster, this is an equal runtime complexity between machines
+
+
+################################################################
+################################################################
+What about operations that arent 'primitive' or they take longer than one unit of time?
+Say in pseudocode we have a list of 'n' length, we then sort(list)
+We can then just assign any sorting algorithm we want to that statement and assign its runtime complexity
+
+This gets into the evaluation of each statement's or line of code's runtime complexity
+Essentially each of the statements or individual lines of code can its own runtime complexity
+
+Whereas just create list, append, length, etc are all primitive constant time operations
+When sorting, we have that runtime complexity in addition to the individual statements complexity
+I.E. - Merge Sorting the list would equate to a runtime complexity of (n*log n), or non-primitive
+Sorting is an algorithm in itself, this goes for a binary search performed after the sort as well
+
+
+################################################################
+################################################################
+What are some other problems we can encounter?
+
+- Very simple runtime complexity calculation below:
+list = [a, b, c, ..., x, y, z]  --> 1_primOp
+len(list) = n                   --> 1_primOp
+a := 0                          --> 1_primOp
+for each element in list:       --> n times
+    a = a + 1                   --> 1_primOp
+    print('msg')                --> 1_primOP
+
+== Runtime Complexity: O(2n + 3)
+
+
+- Now what if we add something to the loop, like an 'if' statement?
+list = [a, b, c, ..., x, y, z]  --> 1_PO
+len(list) = n                   --> 1_PO
+a := 0                          --> 1_PO
+for each element in list:       --> n_times
+    if element is even:         --> 1_PO * (n_times)
+        a = a + 1               --> 1_PO
+        print(msg)              --> 1_PO
+
+== Runtime Complexity: All elements are odd:  O(3 + n)    - best-case
+== Runtime Complexity: 50/50 Odd/Even mix:    O(3 + 1/2n) - average-case
+== Runtime Complexity: All elements are even: O(3 + 3n)   - worst-case
+
+This best/average/worst-case shows that even the same algorithm, wont always have the same runtime complexity
+Best-Case:    Least amount of primitive operations, lowest runtime (fastest)
+Average-Case: Requires very accurate distribution of elements, not often used, unrealistic
+Worst-Case:   Maximum amount of primitive operations, highest runtime (slowest)
+
+That being said, in Algorithm Analysis we focus on the worst-case scenario
+In other words what is runtime complexity if we fuck up the input data entirely?
+
+
+################################################################
+################################################################
+Lastly, what is Asymptotic Growth?
+
+This is the concept which essentially says:
+"We're not interested in small numbers, or constants only interested in whats happening in the long run"
+An exponential order of growth algo bigO(n^3) may work better on tiny data sets than algo w/ bigO(10000 + 200n)
+Once the data set reaches even 100000 entries, the exponential growth will quickly dwarf the '10000' and '200'
+
+Function: f(n) = where n is the number of primitive operations we need to solve a given problem
+Example from above would be: f(n) = 3n + 3
+
+Given:
+Algo_A -> h(x) = 10,000
+Algo_B -> g(x) = 2n
+
+When we graph these we will see that Algo_A seems to be less efficient than Algo_B
+That is when the data entries is below 5,000
+Once the entries are higher than 5k, algo_A quickly becomes more efficient than Algo_B
+Past that break-even point, Algo_B will never again be as efficient as Algo_A
+
+This is the concept of Asymptotic Growth. We're not interested in what's happening up until a certain point
+Were interested in whats happening forever. Not a finite amount of time, we want to analyze to infinity
+When we analyze algorithm efficiency, want to see how it runs forever
+
+So we can say in general, 2n is dominating (>>) 10000 or any constant for that matter
+Therefore: "2n >> 10,000" same with "2n >> 100,000,000,000,000"
+Eventually n will reach half the value of that constant, regardless of size, then outgrow it
+
+This is true for all functions, where other functions have orders of growth higher than it
+Example of this relationship: O(10,000) << O(2n) << O(n**2) << O(2**n) << O(n**n)
+
+################################################################
+################################################################
+The things to remember are:
+Relies on concept CPU is limited to a single core
+- Primitive operations require constant time w/ single core
+
+All memory access is RAM storage, therefore constant time
+
+The constants in the Runtime(x) function are irrelevant
+Don't care about the small numbers or constant values in the long term
+2000n is dominated by 0.1n ** 2
+
+We're focused on the worst case order of growth for 'n'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

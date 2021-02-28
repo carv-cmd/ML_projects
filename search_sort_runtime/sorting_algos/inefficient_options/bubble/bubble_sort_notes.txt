@@ -1,0 +1,84 @@
+What is the Bubble Sort Algorithm?
+To sum it up it is an extremely inefficient sorting algorithm
+Mostly taught for educational purposes
+
+################################################################
+################################################################
+Lets say we need to sort: list = [4, 6, 5, 2, 1, 3]
+We want our resulting list to look like [1, 2, 3, 4, 5, 6]
+
+Intuition behind Bubble Sort:
+It essentially takes the first element in the list[0], and compares it with list[1]
+-> If list[1] is greater than list[0] that is considered sorted
+--> Now we have looked at the first 2 positions
+---> list_now = [4, 6, 5, 2, 1, 3]
+
+Next we look to see if list[2] is greater than list[1]
+-> We see list[1]=6 is greater than list[2]=5 so we swap these 2 element positions
+---> list_now = [4, 5, 6, 2, 1, 3]
+
+Next we compare list[2]=6 to list[3]=2
+-> Seeing that list[3] is larger we swap these 2 elements
+---> list_now = [4, 5, 2, 6, 1, 3]
+
+Next compare list[3]=6 to list[4]=1
+-> list[3] is larger than list[4] so we swap again
+---> list_now = [4, 5, 2, 1, 6, 3]
+
+Next compare list[4]=6 to list[5]=3
+-> Again list[4] is larger than list[5] so we do another swap
+---> list_now = [4, 5, 2, 1, 3, 6]
+
+We have now completed one iteration and the algo will check len(list) to see if all elements are sorted
+As they are not it will enter the second iteration
+This will move 5 to the position before before 6
+Then 4 to position before 5 and so forth until its sorted
+
+So the question is how many times do we need to do that in order to sort the list?
+Well if for each iteration of the sort, one element is moving to the correct position
+So were always looking at one element and its neighbor then swapping if i > i+1
+It does this for index_1, then moves onto index_2 and so forth
+
+
+################################################################
+################################################################
+Bubble Sort Pseudocode:
+
+    function bubble_sort(list):
+        for i:=0 to size(list):
+            for j:=0 to size(list) - i - 1:
+                if list[i] > list[i+1]:
+                    swap elements
+
+We start with an unsorted list
+For each iteration of the outer loop, from 0 to length of list (n=list_length)
+-> We will run another loop inside it, from j=0 to the size of the list minus i minus one
+
+Why is the inner loop "size(list) - i - 1"?
+-> First loop says we need to run the whole thing n times since were not already checking is list sorted
+-> Inner loops wonky comes from it ignoring the final elements which we've already sorted in previous iterations
+--> Essentially after each iteration we have one less element to look at
+After each iteration the elements at the end of the list are guaranteed sorted
+
+Then it just compares the current element index with that of the next highest index
+If x is larger than y, swap elements, otherwise move onto next element
+We stop at n - 1 since we cant compare the final n to an out of bounds list
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

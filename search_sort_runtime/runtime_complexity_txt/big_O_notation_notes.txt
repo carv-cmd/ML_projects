@@ -1,0 +1,129 @@
+What is Big-O Notation?
+Essentially just a mathematical way of writing down which function is limiting another function
+
+################################################################
+################################################################
+Given:
+f(x) = 50n
+g(x) = n**2
+
+Mathematically we say, "there is a point from which on n**2 is going to limit 50n"
+-> With a 'Starting Index', call it 'N'
+-> For each 'n' that is larger than the starting index (N)
+-> We can say that n**2 is going to be larger than 50n (n**2 > 50n)
+N: ForEach(n) > N
+    n**2 > 50n
+
+Can still use Big-O Notation even if we have a constant, and this constant could be a billion for all we care
+
+Given we have any constant such like: C * n**2 > 50n
+-> Take some constant of the real numbers, multiplied by 'n' and squared. Then choose a starting index.
+-> If (C * n**2 > 50n) is always True.
+--> We can say: 50n = O(n**2); mathematically where 50n is an element of O(n**2)
+--> Where O(n**2) is essentially a set, and this set is every function that is limited by n**2
+
+Limited by n**2 means that we can choose a constant 'C' multiply it by n**2
+And this function will always be larger than the function in comparison (50n)
+This is true for infinitely many and at a certain starting index (N)
+Where 'C * n**2' will always be > than '50n'
+Basically just looking for a constant (C) and a starting index (N) where function_A is in O(n**2)
+
+Consider this expression: (n**3 < n**2 * C)
+-> Evaluates to False since n**3 will always be larger than (n**2 * some_constant)
+-> Even if C goes off towards infinity, we will always reach an 'n' that is going to be larger than C
+--> Therefore that inequality will not be True for infinitely many values
+** Seeing we cant find a constant(C) and a starting_index(N) for which (n**3 < n**2 * C) will always be True
+---> From that inequality we can conclude that (n**3 NOT IN O(n**2)
+
+Whenever we can find a Constant(C) and Starting_Index(N) for which (A**x < B**y * C) is always True
+We can say that the left function is in Big-O of the right function
+It's the upper boundary, or it's limited by that function
+
+################################################################
+################################################################
+We can also do this the other way around using the Omega Notation(Ω)
+
+Essentially the same thing as Big-O notation the formulas just the other way around
+Where were trying to find a function that is bounded below by another function
+
+Given:
+f(n) = ....
+g(n) = ....
+N > 0
+C > 0
+f(n) < f(n) * C
+
+We can then say: f(n) is in Big-O of g(n)
+--> f(n) = O(g(n))
+
+If we swap that around we can say:
+-> If f(n) is always larger than g(n) * C for all real_nums given (C > 0) & (N > 0)
+-> We can say that f(n) is bounded below by g(n) * C or:
+--> f(n) = Ω(g(n))
+
+Omega notation just says if we can find any constant(C) that we multiply with the function
+We find a starting index(N) and for all n's from that starting index onwards to infinity the inequality is True
+And we can conclude f(n) is an omega(Ω) of g(n)
+
+################################################################
+################################################################
+We can also say its in both with Theta Notation(θ):
+
+Given:
+-> f(n) = O(g(n)) AND f(n) = Ω(g(n))
+--> This essentially means f(n) = θ(g(n))
+
+Big-O). -> 17n**2 + 6n + 25 = O(n**2)
+Omega). -> 17n**2 + 6n + 25 = Ω(n**2)
+Theta). --> 17n**2 + 6n + 25 = θ(n**2)
+Theta). --> n**2 = θ(17n**2 + 6n + 25)
+
+Theta Notation just shows whether they have the same asymptotic growth
+Or they have a similar efficiency/runtime complexity
+
+Therefore if we were analyzing an algorithm and concluded 17n**2 + 6n + 25 was worst-case primitive steps required
+We can simplify runtime complexity down to Big-O(n**2) since small_nums and constants can be ignored long term
+Same thing goes for: 7 + 12n + 24n**2 + 3n**3
+-> We can just simplify the entire expression down to O(n**3) or θ(n**3)
+--> Since Big-O alone doesnt give us all the information we can use the Theta notation instead
+-> And the Theta(n**3) just says that's the asymptotic growth of that runtime complexity
+
+
+################################################################
+################################################################
+Example how to use the notations:
+
+xyz = 32n**2 + 17n + 5
+-> Show that xyz is in O(n**2)
+
+We do this by proving:
+-> (32n**2 + 17n + 5) < (C * n**2), 'C' can be any number
+-> True for all n's bigger or larger than some starting index (∀n > 'N') ~~N=starting_index
+--> We just have to find a C and N which satisfies the parameters above
+
+To find C, divide both sides by n**2
+-> 32 + 17/n + 5/n**2 < C
+Now picking a C value should return a realistic result
+Pick a C that will larger than the numbers on the left, so a C > 32 here
+-> If we say C = 34, then need to find an N that will result in the 2 fractions being less than < 1
+-> 32 + <1 + <1 will be less than 34. Proving our inequality True
+--> For 17/n we need an n > 17
+--> For 5/n**2, we need an n > 2.5
+---> So if we set our n = 18 this will be adequate to prove our inequality
+
+Therefore, xyz = O(n**2) is True when: C = 34 and n = 18
+-> 32n**2 + 17n + 5 < 34 * n**2 ~~ ∀n >= 18
+
+
+
+
+
+
+
+
+
+
+
+
+
+

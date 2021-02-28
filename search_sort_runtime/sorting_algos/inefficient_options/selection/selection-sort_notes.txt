@@ -1,0 +1,48 @@
+What is the Selection Sort Algorithm?
+
+It can be thought of as a reverse bubble sort
+In Bubble Sort we compare 2 neighboring elements each time and do swaps based on those results
+
+Instead a Selection Sort is targeting the
+Where it takes a starting element, and checks len(list) for any values smaller
+If a smaller value is found, that is set as the 'small' var, and so forth until list end
+Starting index element and 'small' then trade places
+The starting index is incremented by one
+Then iter through list sorting smallest to new index until i=len(list)-1
+
+So in a sense its like a reverse bubble sort where we deal with one less element for each iteration
+But different in the sense that we're not moving the largest element and we don't swap neighbors
+Instead it searches the length of the list for smallest value, and stores the smallest value found
+That value is then swapped with the starting index, therefore 'sorting' the sublist to the left
+
+This sorted sublist becomes apparent with each additional iter as the starting index gets closer to len(list)
+-> With each additional iter the next lowest element is sorted in the sublist left of starting index
+--> The starting index is increased by one until the sorted sublist is the the complete list
+
+################################################################
+################################################################
+Selection Sort Pseudocode:
+
+    function selection_sort(list):
+        for i:=0 to size(list):                   -> n_times
+            min_value := list[i]                  -> 1_PrimitiveOperation
+            min_index := 1                        -> 1_PrimitiveOperation
+            for k to size(list):                  ---> n-i_times
+                if list[k] < min_value:           ---> 1_PrimitiveOperation
+                    min_value = list[k]           ---> 1_PrimitiveOperation
+                    min_index = k                 ---> 1_PrimitiveOperation
+             swap list[i] and list[min_index]     -> 1_PrimitiveOperation
+
+
+Runtime Primitive Operations:               -> (3n), (3), (Sigma: n-i)
+Sigma Sum Notation of Runtime Complexity:   -> 3n + 3 * sum (n-i), i=1 to n
+WolframAlpha Hak:                           -> sum (n-i), i=0 to n
+Wolfram Return for InnerLoop Complexity:    -> 1/2n(n+1)
+Sigma Notation for Total Runtime:           -> 3n + 3 * (n(n + i) / 2)
+Simplified to:                              -> (9n + 3n**2) / 2
+
+**Therefore to determine runtime complexity look for dominating function
+*** In this selection sort, runtime complexity is Big-O(n**2)
+**** Or Quadratic Runtime Complexity
+
+Shits wack

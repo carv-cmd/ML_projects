@@ -1,0 +1,119 @@
+Standard Runtime Complexities
+
+There are a handful of established Big-O runtime complexities
+Listed from best to worst below:
+O(1)       - Constant
+O(log n)   - Logarithmic
+O(n)       - Linear
+O(n log n) - n Log n
+O(n**2)    - Quadratic
+O(2**n)    - Exponential
+
+################################################################
+################################################################
+Constant Runtime is represented visually on a graph as a horizontal line (y = 27)
+No matter how big the problem instance gets the runtime will always be constant O(1)
+
+For example we have a linked list:
+To access an element at index 5 it always takes a constant time of 5 steps
+While the number of primitive operations might be huge (12234500000)
+This is still the most desirable run time to have
+A constant run time is one that is never growing
+So even O(2n) will dominate that huge constant in time
+
+We aim for a constant run time in the worst case scenario
+This isn't always possible though 'searching', 'sorting', etc
+
+################################################################
+If constant complexity isn't possible
+Cool beans, the next best thing is Logarithmic O(log_n)
+
+While a logarithmic runtime complexity grows, it does so very very slowly
+This essentially means no matter how high we get, we will have a very slow growth
+Not constant growth, but not fast growth, it complexity order of growth actually slows down
+For example we get logarithmic growth in algorithms where we divide 'n' by 2
+If implemented properly, no copying of lists, most divide and conquer algorithms will be Log n
+When we divide list/2 -> list/2 -> list/2 this is essentially log_base_2
+Not many problems can be solved in logarithmic time but this would be the second best option
+
+When graphing O(log_n) its blatant that constants don't matter
+Even considering the exponentially slow growth of O(log_n)'s time complexity
+O(log_n) will, in good time, surpass the horizontal constant even if its (70k wtf), thus dominating O(1)
+
+################################################################
+No constant or logarithmic growth options available?
+No problem fuckhead, next best is Linear Growth O(n)
+
+Essentially the same amount of additional steps for each new element added to the problem
+Given a list most operations are linear:
+-> Adding one new element = 1n steps
+-> Adding 10 new elements = 10n steps
+-> Searching for an element => worst-case = len(list)
+-> Finding max val in list -> Linear len(list)
+
+################################################################
+Next is often times called pseudo-linear time complexity O(n log n)
+Which is just a combination of log_n and linear time (linear * log_n)
+
+Consider this, linear grows, well linearly.
+And log_n grows, well logarithmically
+Therefore, as pseudo-linear input grows larger the graphed function begins to look almost linear
+Its actually a curved line, as log_n is a factor and log_n is depending on n so its growing w/ input size
+For example merge sort has the characteristic of n log_n time complexity
+
+We can see the dominating function here again
+While it may look like O(linear) has a higher time complexity than that of O(n log_n)
+When observe values at the upper limits, we see O(n log_n) curves back like a curved wang and fucks us
+
+O(n log_n) still isn't a bad time complexity to achieve though
+
+################################################################
+Now onto Quadratic Orders of Growth (n**2)
+This is where it starts to get shitty
+Like pull up a chair and wait an hour for processing shitty
+
+Unfortunately we will encounter these quite often
+Things like where we have to consider all the other elements in the list
+And perform each operation on each element
+For example, just about any nested for loop is quadratic
+Or bubble sort has a worst-case time complexity of n**2
+While this still isn't very efficient at all to say the least
+The time complexity is still solvable, exponential you're getting pegged by the algorithm
+Still wont crash the computer. This goes for any n**some_constant
+
+################################################################
+Onto the Exponential (C**n)
+This is where it gets mega extra shitty complexity mega quickly
+Like pull up a fucking couch and relax for 100,000 years time complexity
+This is where shit gets absolutely impossible to solve.
+Unmanageable runtime complexity. Avoid at all costs
+
+Exponential growth is simply just constant to the power of 'n'
+O(2**n), in time, will dominate O(n*128). You are fucked regardless
+
+How can we achieve the legendary exponential growth?
+RECURSION for starters.
+Take fibonacci recursively for example  #Recursive Calls: 1
+-> For each recursive call we have 2 recursive calls  #Recursive Calls:2
+--> And for each of those 2, we have another 2 recursive calls #Recursive Calls:4
+---> And for each of those 4, we have another 2 recursive calls, etc, etc, etc
+** This is if we're not using memorization of another method of dynamic programming
+
+################################################################
+HOLD ON IT ACTUALLY GETS SHITTIER
+Behold Factorial Growth (n!)
+Really not a common occurrence
+We see it when finding all possible permutations for an element
+In other words you gotta be fucking stupid to accidentally wind up here
+
+################################################################
+You probably wouldn't believe it, but it actually gets worse than factorials
+THE FUCKING QUADRATIC EXPONENTIAL RUNTIME COMPLEXITY
+How in gods gracious fuck could you ever end up doing this..
+The growth is full blown retarded growth
+Get a couch and 100 trillion billion trillion years to relax
+
+################################################################
+################################################################
+Overall if we cant come up with a good polynomial solution for the problem
+Essentially the problem will be expensive to compute regardless

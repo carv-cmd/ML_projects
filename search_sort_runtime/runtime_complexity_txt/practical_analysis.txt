@@ -1,0 +1,138 @@
+What is the Practical Analysis of Algorithms?
+
+Requires the understanding of Sigma Sum
+A fancy way of saying 'loop'
+
+################################################################
+################################################################
+--> Algorithm_A <--
+
+    k := 0                        -> 1_PO
+    for i = 1 to n:               -> n_PO
+        for j = (i + 1) to n:     -> Sigma Sum this statement
+            k = k + j + i         -> 1_PO
+    return k                      -> 1_PO
+
+Start by identifying the primitive operations for each statement
+Any statements that have a constant number of operations can essentially be ignored
+When looking at the possible orders of growth, a constant growth is dominated by all others
+
+The initial loop starts from 1, and iterates through the code until 'n'
+Therefore it is just 'n' times since its a linear growth from 1 to n
+
+The next loop is tricky since (for j = (i + 1) to n) does not display linear growth
+For each iteration of the outer loop 'i' is only increasing by 1 - O(n)
+The inner loop will run n times for each n in the outer loop or O(n**2)
+At least that's what it looks like.
+-> Loop start 'j' is increasing by one more than i for each iteration "j = (i + 1)"
+--> Therefore the problem size for each inner iteration is one smaller than 'i'
+---> This can be written like (n-1)+(n-2)+(n-3)+(n-4)+...+(n-ni)
+
+Create a summation with this information such that:
+-> n on top of sigma signals the end point
+-> (n - i) for the summation steps
+-> i=1 is the starting point
+Plug that into wolfram alpha lazy fucker and you got yourself the runtime complexity
+
+Runtime Complexity = ((n-1) * n) / 2
+When we multiply that out we get (n**2 - n / 2) and since 2 is a constant factor we can just ignore it
+Therefore were left with just n**2 - n which is O(n**2) or quadratic runtime complexity
+
+################################################################
+################################################################
+An additional thing is to come up with formula for the return value and specify that in a Theta notation
+
+So what were doing is analyzing how Algorithm_A return value 'k' comes into existence
+With each iteration, to k we add j and i
+Instead of looking at j and i combined we'll look at them separately
+
+To come up with 'k', k starts at zero then we always add j and i to it
+Its simpler to begin by analyzing 'i' value, because finding 'i' is simpler
+We already figured out the second loop runs in n-1 times total, then n-2 times total, and so on
+And with each n-i the i is changing, so basically what we say is:
+-> When i=1, inner loop runs n-1 times
+--> 1*(n-1) = k_first_iteration
+-> Then when i=2, inner loop runs n-2 times
+--> 1*(n-1) + 2*(n-2) = k_second_iteration
+-> And so on until reach 'n'
+
+Essentially we say "k = i * (n-i)"
+-> Or Sigma Sum Notation like such: "sum i*(n-i), i=1 to n"
+-> Where i*(n-i) is the part of the sum which we add to when we just look at the 'i'
+In other words "i*(n-1)" that were calculating in the end is what happens by adding i to the loop constellation
+So were adding j and i and if we ignore the j and just look at the i's added over time
+The Sigma Sum notation from above is what we get for 'i'
+-> Which returns: (n(n-1)(n+1)/6) for 'i'
+--> Multiplied out we get: ((n**3 - n) / 6)
+
+For 'j' its almost the same thing.
+When i=1 and j=2 only happens a single time
+That is during the very first outer iteration when i=1 we add 2 to k, and this never happens again
+Then we add 3, 4, and so on until 'n'
+
+Next when i=2, we add 3 a single time and this will never happen again
+Now 2 has been added to n one time, and 3 has been added two times
+
+Same when i=3, we add 4 to k three times and now theres a pattern emerging
+
+Essentially from this we can conclude the j value gets added j - 1 times
+The actual result for the j component of the sum is: j*(j - 1)
+-> "sum j*(j-1), j=2 to n"
+-->Which returns: (n(n-1)(n+1)/3) for 'j'
+
+################################################################
+################################################################
+--> Algorithm B <--
+
+    k := 0          -> 1_PO
+    i := 2^n        -> 1_PO
+    while i > 0:    ->
+        k = k + i^2 -> 1_PO
+        i = [i/2]   -> 1_PO
+      return k      -> 1_PO
+
+The question we have is 'How many iterations will this while loop execute?'
+The condition for the loop as defined below:
+-> We start with 2^n and we want to get this value down to zero or below
+-> We can see that i gets halved (divide by 2) every time by "i = [i/2]" []=floor_function
+Therefore we just need to figure out how many times we will need to divide 2^n by 2 to get to zero or less
+
+This is actually quite simple to calculate if we understand logarithms yeet
+Begin by looking at the result from log_base_2(x)
+-> This is just the amount of times that we have to multiply 2 by itself to get to x
+In other words, when we calculate a logarithm to a certain base
+-> It tells us exactly how many times we need to multiply this base by itself to get to x value
+When we have 2^n, this doesnt mean anything else than 2*2*2*2.....
+
+So the question is how many times can we divide by 2 in order to get to zero. Or "n + 1"
+Were basically just asking "log_base_2(2^n) = n"
+Therefore we have a runtime complexity of Theta(n)
+
+################################################################
+To calculate runtime complexity for the return value:
+
+This isnt very difficult as were only adding i^2 to k
+i starts at 2^n and with each iteration essentially gets halved
+2^n -> 2^n-1 -> 2^n-2 -> and so on until we get to 2, 1 and 0 or less
+And what were doing is adding these things squared like below:
+(2^n)**2 + (2^n-1)**2 + (2^n-2)**2 + (2^n-3)**2 + (2^n-i)**2
+
+We can then easily create a Sigma Sum from this return value:
+"sum (2**n-i)**2, i=0 to n"
+Complexity of Return Value = "(4^n+1 - 1)/3"
+Therefore we have an exponential size complexity as Theta(4^n)
+
+################################################################
+################################################################
+Now just practice and memorize turning the sigma notation into the actual formulas
+Can use 'wolfram|alpha' but always good to have the bigger intuition of the concept
+
+
+
+
+
+
+
+
+
+

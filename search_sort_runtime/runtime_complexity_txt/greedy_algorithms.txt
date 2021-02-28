@@ -1,0 +1,54 @@
+What is a Greedy Algorithm?
+How to identify the characteristics of a Greedy Algorithm?
+
+Where are some areas we should use these algorithms?
+And where are some places they produce less than optimal results?
+
+Greedy Algorithms essentially just aim to reduce the problem size as much as possible with each step
+
+################################################################
+################################################################
+Consider we have 3 coins of different values: [(1cent), (5cent), (10cent)]
+These are the types of coins we can use and we have an unlimited amount of these coins
+
+The question is then, given we need 47cent total..
+-> What is the optimal solution when the goal..
+--> Is to find the smallest possible combination of coins to get us to 47cent?
+==> (10cent*4) + (5cent*1) + (1cent*2) = 47cent
+
+Therefore can we find an algorithm that always gives us the optimal solution?
+
+    def optimizer(x=1, y=5, z=10):
+        result = []
+        number = int(input('Enter Number: '))
+
+        mod = number % z
+        result.append(f'{(number - mod) // z}*(10cent)')
+        number, mod = mod, number
+
+        mod = number % y
+        result.append(f'{(number - mod) // y}*(5cent)')
+        number, mod = mod, number
+
+        mod = number % x
+        result.append(f'{number - mod // x}*(1cent)')
+
+        return result
+
+The above is an example of a greedy algorithm
+Basically says: 'How can I decrease this value as much as possible with my next step?'
+10 is the largest value we have so we start there
+
+This isn't always the case where a greedy algorithm gives us the most optimal result
+
+################################################################
+Consider a new set of coins: [1c, 5c, 10c, 20c, 25c]
+With the same goal of finding optimal solutions
+
+Given we need 40c in the least amount of coins
+-> The optimal solution would be 2 20c coins
+
+But with a greedy approach it will aim to reduce as much as possible in the first step
+-> Therefore 25c will be subtracted from 40c with a remainder of 15c
+--> Then 10c will be subtracted from 15c with a remainder of 5c
+---> And 5c will be subtracted getting us to our total

@@ -1,0 +1,190 @@
+What is the Merge Sort Algorithm?
+What are divide and conquer sorting algorithms?
+
+Merge sort is the first 'efficient' sorting algorithm were going to look at
+
+################################################################
+################################################################
+What is the Divide-and-Conquer approach?
+For starters it is rooted in military terminology
+Where if we have an opponent that's too big, we divide the opponent into smaller parts
+Once a large opponent is divided down into smaller subsets, they're much easier to conquer
+> I.E. we win the overall war by splitting it into smaller battles
+-> ex: Enemy army of 1000 troops, break them down into groups of 100, conquer those 1 by 1
+--> 150 allies could defeat an army of 1000 simply by beating the smaller 100 subset 10 times
+---> Where as taking the enemy head on would've resulted in sure defeat
+
+################################################################
+################################################################
+We take this same Divide-and-Conquer approach to computer programming
+
+When were faced with a complex problem that needs a script to solve it
+we don't write code that solves it in a one-liner, that's just fucking stupid
+-> Instead we split the complex problem into many smaller simple problems
+--> And this actually applies to almost any problem we take on in programming
+
+* ComplexProblem_1 == SubProblem_1 + SubProblem_2 + SubProblem_3 + SubProblem_4 **
+-> We may even go an additional step and split each Sub-Problem into Sub-Sub-Problems
+** SubProblem_1 == SubSubProblem_1 + SubSubProblem_2 + SubSubProblem_3
+
+Instead of looping n, n_times and quickly growing to quadratic run time
+Consider how these SubProblems can be simplified down to primitive operations
+Primitive operations can be performed almost instantly
+> Say your problem has a runtime of n**2. Quadratic growth unfavorable even for supercomputers
+-> We could divide that 1 problem down into many, each with constant run time, then just add those together
+--> This allows us to get n*log_n, or pseudo-linear runtime
+---> Remember, shit on a blanket is better than quadratic complexity any day
+
+################################################################
+################################################################
+This is the same approach we bring to the Merge Sort
+
+Given:
+-> unsorted = [4, 8, 7, 1, 5, 6, 2, 3]
+
+First off, we don't do merge sort in a linear way
+> We're not looking at 'n' element then the len(list) searching for 'i(+/-)' element to swap or insert
+-> In other words not the same linear approach that bubble, selection, and insertion sort use
+--> Were not just picking an arbitrary number (ex. list[0]) and comparing it with all the other numbers
+
+Instead were split the list into 2 equal sublists:
+s1 = [4, 8, 7, 1] --&&-- s2 = [5, 6, 2, 3]
+
+We then split 's1' and 's2' into 2 more equal sublist parts totalling 4 sublists:
+(s1a = [4, 8] -- s1b = [7, 1]) --&&-- (s2a = [5, 6] -- s2b = [2, 3])
+-> These sublists are now much easier to sort than the original list ever would've been
+--> And this is the ideology behind selection sort
+
+################################################################
+################################################################
+What does Merge Sort actually do?
+
+Given:
+-> unsorted = [7, 3, 6, 8, 4, 1, 2, 5]
+
+##############################
+Starts by splitting the list into 2 parts, or equal sublists:
+s1 = [7, 3, 6, 8]
+    --&&--
+s2 = [4, 1, 2, 5]
+
+** We then recursively call merge sort onto these lists
+** I.E. we "ignore" 's2' and call the entire merge sort algorithm on 's1'
+
+##############################
+What this means is we split 's1' yet again (do this to both sides):
+s1a = [7, 3] --&&-- s1b = [6, 8]
+    --&&--
+s2a = [4, 1] --&&-- s2b = [2, 5]
+
+##############################
+Call merge sort again on s1a, s1b, s2a, and s2b resulting in:
+s1a_1=[7] --&&-- s1a_2=[3]
+    --&&--
+s1b_1=[6] --&&-- s1b_2=[8]
+    --&&--
+s2a_1=[4] --&&-- s2a_2=[1]
+    --&&--
+s2b_1=[2] --&&-- s2b_2=[5]
+
+If we were to tree this out, with each recursion, a whole is split resulting in 2 sub-halves
+So we now have 8 sublists with 1 element inside each list
+** This is the 'Divide' process, where we take big_list and make it uh many small_list
+
+##############################
+Now we can start the 'Conquering' process by examining sublists:
+S-> 's1a_1' and 's1a_1' => 7 greater than 3:    :swap elements
+P-> 's1b_1' and 's1b_2' => 6 less than 8:       :pass elements
+S-> 's2a_1' and 's2a_2' => 4 greater than 1:    :swap elements
+P-> 's2b_1' and 's2b_1' => 2 less than 5:       :pass elements
+
+New sorted sublists:
+s1a_1=[3] --&&-- s1a_2=[7]
+    --&&--
+s1b_1=[6] --&&-- s1b_2=[8]
+    --&&--
+s2a_1=[1] --&&-- s2a_2=[4]
+    --&&--
+s2b_1=[2] --&&-- s2b_2=[5]
+
+##############################
+> Now this is an easy process when merging single element lists
+-> But the same concept applies to the multi_element lists
+--> Remember all the far branches of the D&C tree are now sorted
+---> We never have to worry about s2b_1 being larger than s2b_2
+
+Now we want to merger s1a and s1b back together
+In order to figure out the first element we just have to look at 's1a_1=3' and 's1b_1=3'
+Don't have to consider 's1a_2=7' and 's1b_2=8' because its known they're larger than their leading element
+
+In this case we pick the s1a_1=3. Compare (s1a_2=7) with (s1b_1=6)
+Since we know s1b_2=8 isn't the smallest in that sublist (they sorted) we know s1b_1 is the smallest in sublist
+
+We see (s1b_1=6) is smaller than (s1a_2=7) so we swap their positions
+Next we compare (new_s1b_1=7) to (s1b_2=8)
+-> Seeing that they're in the correct order, s1 is now considered sorted
+s1 = [3, 6, 7, 8]
+
+Perform the same operations on the other side of the list
+s2a_sorted = [1, 4]
+s2b_sorted = [2, 5]
+s2 = [1, 4, 2, 5]
+
+##############################
+Now there are 2 halves of the initial list, fully sorted in their own context
+Now to merge and sort these 2 sublists back into one whole sorted list
+
+s1 = [3, 6, 7, 8]
+s2 = [1, 4, 2, 5]
+list = [3, 6, 7, 8, 1, 4, 2, 5]
+
+Again we just consider the first element in either list:
+Comparing, s1[0] > s2[0] == True:
+Therefore we pick s2[0]=1 as the smaller value
+-> sorted = [1]
+
+Then we look at s1[0]=3 and s2[1]=2, picking s2[1] as the smaller
+-> sorted = [1, 2]
+
+Then we look at s1[0]=3 and s2[2]=4, picking s1[0] as the smaller
+-> sorted = [1, 2, 3]
+
+Now we look at s1[1]=6 and s2[2]=4, picking s2[2] as the smaller
+-> sorted = [1, 2, 3, 4]
+
+Next compare s1[1]=6 and s2[3]=5, picking s2[3]=5 as the smaller
+-> sorted = [1, 2, 3, 4, 5]
+
+Then s1[1], s1[2], s1[3] are already sorted
+-> sorted = [1, 2, 3, 4, 5, 6, 7, 8]
+
+################################################################
+################################################################
+And that's the Merge Sort
+Much more efficient as were not comparing all the elements to find smallest
+Were just comparing the first 2 elements of smaller sorted sublists
+Incorporate floor division to offset the dividing line in the case where len(list) is uneven
+
+Merge Sort Runtime Complexity:
+We essentially have 3 steps in the Merge Sort
+1). Dividing: (split list into 2 equal sublists)
+2). Recursive Call: (splitting sublists into 2 more equal parts and so on)
+3). Conquering: (Merging the sublists back together into sorted list)
+
+Runtime_1). log_base_2(n)
+-> Since we split the problem size or len(list) in half each time until len(sublist)=1
+
+Runtime_2). Now we have the recursive call which essentially calls the merging process
+-> So we do the linear operations as many times as needed to get back to the full list size
+
+Runtime_3). worst-case = linear run time if a linear amount of comparisons is needed
+-> As we work back up through the levels, our list size increases
+--> But the number of comparisons needed is less as each level up the elements are partially sorted from below
+
+The dividing is logarithmic split,
+The merging is linear, but needs to be done as many times as there are division levels
+--> In other words we need to merge as many times as we divided in order to get back to full list size
+
+Therefore the Merge Sort Runtime Complexity is: Big-O(n*log_2(n))
+This has the same runtime complexity for best-average-worst case scenarios
+-> Its always doing the same 3 operations log(n), n times

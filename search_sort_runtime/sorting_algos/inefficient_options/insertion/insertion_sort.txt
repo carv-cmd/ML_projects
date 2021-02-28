@@ -1,0 +1,99 @@
+What is the Insertion Sort Algorithm?
+
+For starters it is the last of the 'inefficient' sorting algorithms
+The 3 inefficient methods being: Bubble, Selection, and Insertion
+
+################################################################
+################################################################
+As the name suggests it inserts elements into their correct positions
+In comparison with Bubble and Selection where we just constantly swap
+
+Initial List: [7, 4, 8, 3, 2, 1, 5, 6]
+Instead of running length of the list doing this or that
+We split the list into 2 parts: Sorted Sublist, and Unsorted Sublist
+Split_List = [7, | 4, 8, 3, 2, 1, 5, 6]
+
+So for the first iteration the sorted sublist is only one element or index[0]=7
+We loop through the unsorted list for any elem smaller than 7, here being index[1]=4
+Insert that element into the sorted list where it belongs
+-> 4 is less than 7 so it would become index[0]
+Sort_List_1 = [4, 7, | 8, 3, 2, 1, 5, 6]
+
+Next iteration, 8 is greater than 7 so we insert it at sub_sorted[-1]
+Sort_List_2 = [4, 7, 8, | 3, 2, 1, 5, 6]
+
+Next iteration, 3 is less than 4 so element is inserted at index[0]
+Repeat above step until sub_unsorted = [5, 6]
+Sort_List_n = [1, 2, 3, 4, 7, 8, | 5, 6]
+
+Next iteration is different as, 5 is not greater than 8 and not less than 1
+Binary search where to insert element, here between 4 and 7
+Sort_List_n+1 = [1, 2, 3, 4, 5, 7, 8, | 6]
+
+Same steps as above should yield:
+"len(sub_sorted) == len(initial_list)"
+"len(sub_unsorted) == 0 or 1"
+--> Event 'sub_unsorted == 1' if final element also happened to be max element in list
+
+################################################################
+################################################################
+Insertion Sort Pseudocode:
+
+    function insertion_sort(list):
+        for i := 1 to size(list):               -> n-1_times
+            value := list[i]                    -> 1Primitive
+            j := i                              -> 1Primitive
+            while j > 0 and list[j-1] > value       ---> i_times
+                list[j] = list[j-i]                 ---> 1Primitive
+                j = j - 1                           ---> 1Primitive
+            list[i] = value                     -> 1Primitive
+
+list = [4, 6, 5, 3, 1, 2]
+
+--> Runtime Complexity <--
+Primitive Operations:   -> [3*(n-1)], [2, i_times]
+Sigma Sum:              -> [3*(n-1)] + [2*sum i, i=1 to n-1]
+Wolfram Alpha:          -> sum i, i=1 to n-1 == (n(n-1))/2
+Runtime Complexity:     -> Big-O(n**2)
+
+---> FIRST SORT <---
+Starts at index[1] instead of index[0] since index[0] is already 'sorted'
+The space between index[0] and index[1] is our "sub_sorted|sub_unsorted" boundary
+
+j is a counter which starts at the current index 'i', 1 here, and it counts down
+This is the variable for our while loop to run its smallest element search
+- while element is greater than zero (counting down)
+- AND
+- as long as the element at the index 'j-1' is larger than the value
+--> We're going to shift the values so that new values fit in
+
+So the first iteration looks at j and sees its larger than zero (j=1)  #STMT=(TRUE)
+AND
+list j-1(j-1=4) is greater than j(j=6)  #STMT=(TRUE)
+
+Since both are true and we don't want to move elements already in the right place
+Just leave the element where it is and shift the boundary +1 positions
+
+---> SECOND SORT <---
+In the second outer loop i=2, or index[i] = 5
+
+Now we see j(j=2) is greater than 0  #STMT=(TRUE)
+AND
+index[j-1](index[j-1]=6) is greater than value(value=index[i]=>5)  #STMT=(TRUE)
+
+Since the while loop conditionals both == True, we enter the loop operations
+-> Start by looking at list[j] which is 5 itself, and we say list[j] = list[j-1]
+--> This overwrites the element at index[j] with the element at index[j-1], resulting in 2 sixes, and no 5
+---> But we still have the initial '5' stored in the 'value' variable so no worries
+----> We then decrease 'j-1' so j is only 1, or in other words the index_value we previously overwrote
+----> 'j-1' again we see that 4 is not greater than 5, so j remains the same
+----> j is no longer larger than 0, therefore, while conditionals are not met and loop is ignored
+-----> We then assign list[j] = value, overwriting the initial 6 with the sorted 5
+
+-> The outer loop is then incremented by one, thus increasing sublist split by 1
+--> The above process is repeated until all values in list have been sorted
+
+
+
+
+

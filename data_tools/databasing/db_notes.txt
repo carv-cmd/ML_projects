@@ -1,0 +1,113 @@
+# Create connection to database, if already exists, connect to it
+# Else, create a new database
+# Create connection object which is the result of connect method
+# Pass the database name to the function
+- connection = sqlite3.connect('btc-usd_session.db')
+
+# Now create a cursor as to execute SQL queries within the database
+# This is just the interface to our database
+# Every time we want to execute something we have to use that cursor
+cursor = connection.cursor()
+
+# Now that database connection is established, create a structured table
+# .execute is the method we use to execute a query statement in SQL
+# Call this method to pass multiline SQLite statements to the database
+- cursor.execute("""
+- CREATE TABLE IF NOT EXISTS PERSONS
+-     id INTEGER PRIMARY KEY,
+-     first_name TEXT,
+-     last_name TEXT,
+-     age INTEGER
+- """)
+
+# To insert values into the table
+- cursor.execute("""
+- INSERT INTO persons VALUES
+- (123, 'Paul', 'Smith', 31),
+- (234, 'Mark', 'Johnson', 24),
+- (345, 'Anna', 'LaGape', 19)
+- """)
+
+# Query the database for any instance of a last_name equal to 'Smith'
+- cursor.execute("""
+- SELECT * FROM persons
+- WHERE last_name = 'Smith'
+- """)
+
+# To print the value of the query result use statement below
+rows = cursor.fetchall()
+print(rows)
+
+# Must 'commit' to apply execution to database then .close() the connection
+- connection.commit()
+- connection.close()
+
+##############################################################################
+##############################################################################
+Combining OOP with database programming allows the creation of python objects from database entries
+Therefore we can load these entries into our script
+We can also create database entries from python objects
+This allows the loading python objects as entries into a database
+
+To do this we create a person class with an __init__ constructor
+Include the id(PRIMARY KEY), first, last, age in the __init__ parenthesis
+We also need to define the connection and cursor in within the class ('__init__')
+**self.connection and self.cursor are not init keyword arguments either, just part of constructor
+
+Now with the constructor defined, we can specify/define a load_person method
+This method loads a person from the table and converts it into a python object
+How do we want to load that person?
+
+Creating redundant databases absolutely require the use of unique identifiers
+This prevents collisions when databases contain multiple items with an equal name or value
+i.e. - we need a way to distinguish between Ben and Ben,
+Unique Identifiers are just things like an SSN/ID, or first+last+age+birthdate
+
+##############################################################################
+##############################################################################
+When making the load_person() method we can simply pass the id_num for parameters
+With the cursor.execute() statement we initiate an SQL query
+Start an f-string to format the id_num into the sql string statement
+- cursor.execute(f"""
+- SELECT * FROM person
+- WHERE id = {id_num}
+- """)
+
+Then call .fetchone() instead of .fetchall()
+This returns a tuple of the first element encountered that matches the query search
+Since primary keys were used here only one element can be returned but you get the gist
+
+Next we assign the values of the results back onto the class attributes
+Since the 0 index is the id, we start assigning these values at index 1
+- self.id_num = id_num
+- self.first = results[1]
+- self.last = results[2]
+- self.age = results[3]
+
+##############################################################################
+##############################################################################
+We can as well add a load all method to show all the entries within that databases table
+- def load_all(self):
+-   self.cursor("""
+-   SELECT * FROM persons
+-   """)
+-   return self.cursor.fetchall()
+
+##############################################################################
+##############################################################################
+Putting python objects into the table we just reverse what we did above
+- new_person = Person(789, 'Charles', 'Manson', 70)
+
+To load the Person object we created we define a new method within the person class
+
+
+
+
+
+
+
+
+
+
+
+

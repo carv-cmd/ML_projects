@@ -1,0 +1,162 @@
+What is the Pandas library?
+Pandas is what allows us to efficiently manipulate and structure our data
+Pandas offers us 2 data structures. 'Series' and 'Data Frame'
+A data frame can be thought of as a sort of SQL or excel table like structure
+So we have the table, we have the columns, rows, headers, indices, etc
+
+These allow us to do alot of data science operations
+Things like efficiently manipulating data
+Efficiently sort data, export, serialize, visualize, etc
+
+'import pandas as pd' as well as matplotlib.pyplot
+Will be using pandas for plotting but need the plt module to actually show the plot
+Not importing numpy as pandas uses numpy, but were not calling np.any_function_or_attribute
+
+Beginning with the Pandas Series structure
+
+##############################################################################
+##############################################################################
+How do we create a series and what is a series?
+A series can be thought of similar to a 2 column table or somewhat like a dictionary
+Has 'values' and 'indices' so key-value pairs or index-value pairs
+
+To create a series we simply call pd.Series()
+To this function we pass 2 collections or 2 lists
+These 2 lists are; the 'values', then the respective 'indices'
+For example:
+series = pd.Series([10, 20, 30, 40], ['a', 'b', 'c', 'd'])
+**With series structures, the second collection is ALWAYS the index collection**
+
+When we print this the data structure is like a 2 column table
+Or like a dictionary with the key value pairs, just without the curly brackets
+WHat we have though is the index/key column on the left
+And the corresponding values which belong to that key/index on the right
+
+Since all of the values are integers, the data type is 'int64' if the values were inconsistent, say..
+If we were to change one of our values to a string, the data type becomes an object
+The data type simply tells us what kind of data we have within that particular data series
+
+A Series data structure is simply table-like with 1 column for keys, and 1 column for values
+To create a person data series we can have keys with things like:
+Persons: Name, Age, Weight, Height, Dong Length, Etc.
+Then values corresponding to each of those keys
+
+##############################################################################
+##############################################################################
+Why use this instead of a dictionary?
+The series, and pandas data structures in general have alot of functions built into the library
+This allows us to do "alot of crazy shit"
+
+How to access the individual values?
+We call the index of the element with say: series['c'] = 30
+Can also call the index instead of passing the key value as a string
+Works just by calling the index but call series.iloc[index] instead for integrity
+print(series['b'])
+print(series[2])
+print(series.iloc[2])
+
+Even though the 2nd collection is always the index collection
+We can specify the index with a keyword argument
+
+We can also specify the name like series.name = 'My Series'
+
+And that covers the basics of series
+
+##############################################################################
+##############################################################################
+We can easily convert a series to a dictionary just typecast the series into a dict
+print(dict(series))
+
+A dictionary is just a dictionary, can call/access the values by referring to the keys, but that's about it
+Cant really call positions of do any useful calculations with dictionaries
+With series we can do all of these functions
+
+Start by creating a second series data structure
+Its then easy to add the values of each series together with the + operator
+print(person1.tail(3) + person2.tail(3))
+print(person1.tail(person1.count() - 1) + person2.tail(person2.count() - 1)) pulls all elements except first
+
+The index collection for each list also don't have to be perfect matches
+As long as the key names are the same between each list
+
+We can also call series_name.count() this is similar to the len function
+
+What if we only want the first 3 rows, or 5 rows, or 20 rows?
+This is something we often going to use with data frames
+
+For example:
+print(s1.head(2)) == first 2 rows
+print(s1.tail(3)) == last 3 rows
+We pass the 'n' number of elements we want from the start or end of series as parameters
+
+This is useful when working with data frames if we want to see the frame structure
+We can call the s1.head(5) and just see the first 5 w/o more output than a human can handle
+
+##############################################################################
+##############################################################################
+Another useful feature is the ability to apply a function to all the values in a series
+
+We setup any normal function with normal parameters
+Then we can either pass the series object as a value into the function call
+Or we can use the series.apply(function) method
+
+##############################################################################
+##############################################################################
+Sorting of a series can also be done much more efficiently than a dictionary
+
+Simply call series.sort(), then we can choose to sort either by the index or the values
+This is due to the fact that series are almost always sorted by default by indices
+If the list is sorted neither by indices or values we can choose which to sort by
+s1.sort_index()
+
+When we call a function from inside a series or data frame, we always get a copy return
+This means s1.sort_index() just returns a sorted version of that series
+The initial list stays the same, we can assign the copy to a new function
+Or in Pandas we have the keyword called 'inplace='
+If we set 'inplace=True', what happens is we don't return any list
+Instead we apply the sort to the initial series data structure
+
+##############################################################################
+##############################################################################
+Another useful feature of pandas is how it lets us visualize our data
+
+To do this we just take our data, say:
+s1 = pd.Series([1, 2, 3, 4, 7, 5, 1, 2], ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'])
+
+Then we call .plot() function on the s1 objet:
+s1.plot()
+
+Then just show plot with plt.show()
+
+This is something we cant do with dictionaries without a fuck load of numpy manipulation
+At least not with the data in a raw form like were doing
+
+If we want to go beyond the line chart we just call:
+s1.plot.plot_type_here
+plot_type_here = .bar(), .pie(), .scatter(), .3D(), .barh(), .hist()
+
+To style our plot we just use matplotlib styling and yer set
+
+##############################################################################
+##############################################################################
+One of the most useful features of series and pandas in general
+Is the ability to export to almost any data type
+
+All we have to do is call 's1.to_'
+And a list of all the possible data types is auto populated
+
+To export to excel we just need to import/install a module to handle that
+
+##############################################################################
+##############################################################################
+Series have their uses but data frames are typically the structure we use
+This is mainly due to the fact that data frames have multiple columns
+
+
+
+
+
+
+
+
+

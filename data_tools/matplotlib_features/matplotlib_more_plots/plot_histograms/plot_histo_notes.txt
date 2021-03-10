@@ -1,0 +1,42 @@
+A histogram is basically just a plot which visualizes statistic distribution
+In this example we will be visualizing the distribution of students heights from a group/class
+With Normal Distribution we get the famous Gaussian bell curve
+So well use a histogram to visualize that spread of data
+
+##############################################################################
+##############################################################################
+Begin by defining the values for the heights
+The 2 parameters used in this example are 'mu' and 'sigma'
+(mu = the average or mean), and (sigma = the standard deviation)
+Here we used an average of mu=172cm and standard deviation sigma=8cm
+
+Now that we have our average and standard deviation we can generate list of student values
+x = mu + sigma * np.random.randn(1000)
+The value we pass to randn() is the amount of students heights which we wish to generate
+
+This function takes the average(mu) adds the standard deviation(sigma)
+Then by calling the randn() function it creates a random normal distribution with x values
+In randn() the suffix n stands for normal distribution
+
+##############################################################################
+##############################################################################
+To visualize this we need a histogram which we can create with the plt.hist() function
+We pass the x value to plt.hist() as the first parameter
+Followed by how many of the heights do we want to visualize, all 1000 or just 100?
+
+Then we just specify a facecolor keyword arg and let er rip
+
+##############################################################################
+##############################################################################
+Now we want to specify the correct values for the Y-axis
+By default they're the absolute value and we want to change that to the probabilities(percentages)
+We do this by setting the 'density=' keyword to True
+
+##############################################################################
+##############################################################################
+Now to add some labeling
+We do the standard title, xlabel, ylabel, and so forth
+
+If we wanted to add text to our graph we can use plt.text()
+We specify the x and y values as the first 2 parameters
+Then pass a string with the desired text as the third parameter

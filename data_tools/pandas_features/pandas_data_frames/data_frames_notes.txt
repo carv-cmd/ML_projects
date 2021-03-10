@@ -1,0 +1,118 @@
+What are Pandas Data Frames and why do we use them?
+
+The data frame is the largest and most important data structure in the pandas module
+Its like the series big brother, and abit more complicated than the series structure
+It can be thought of like an SQL table or and Excel sheet
+Multiple columns and multiple rows so we can do alot of different operations on them
+
+##############################################################################
+##############################################################################
+The first thing to do is create the data frame, how do we do this?
+
+Begin by creating a dictionary with all the columns and the individual values of each row
+Then we take that dictionary and convert it into a pandas data frame
+Theres other ways to create the data frame, such like loading it in from an API or read from CSV file
+For now though we will just work with a basic set of data
+
+We create the dictionary with all the keys being the column names
+And the value being the list of the individual row values
+So for example, a key=name, then a list of all the names for values
+
+With our dictionary created all we have to do is call pd.dataframe and pass the dictionary to it
+df = pd.dataframe(dict_data)
+
+When we print df, this is the basic structure of a data frame
+
+##############################################################################
+##############################################################################
+If we don't want to have an automatic index, we can also define an index
+Remember though, the index should always be unique, as the index is the unique identifier for a row
+Since 2 people can have the same name, instead we want a unique identifier for that entry, like a social
+
+So what we can do is just add a unique id row for the index (see code)
+
+What we do now is say df.set_index() and pass the column we wish to set as the index as a parameter
+i.e. - df.set_index('SSN')
+
+If we want this in our actual data frame we can either say:
+df = df.set_index('SSN') because it returns a new data frame, OR,
+We can just specify the inplace keyword to be True so that the change gets applied to the dataframe
+When we specify the inplace keyword we can then set any of the keys as the index
+For example if our index collection is at the bottom of a list instead of the top
+
+##############################################################################
+##############################################################################
+Now onto the basic attributes and functions we can use with dataframes
+
+Lets say we just wanted to print part of the data frame?
+We could call df.head(2) to return the first 2 rows of the dataframe
+
+Another thing we can do is use basic numpy attributes on the dataframes
+df.dim() would give us the amount of dimensions our data frame has
+
+As well as the shape of our data frame with df.shape
+This returns the shape in a (columns, rows) format not counting the index
+
+We can also use df.size to see how many values our data frame consists of,
+This method also doesnt count the values for the index column
+
+Another attribute is df.dtypes, which not only gives us the data type of the data frame,
+But gives the data type of each individual column as well
+
+Another attribute not covered yet is the T attribute
+This just gives us a transposed version of the data
+Transpose just means we swap the columns and the rows
+Where the rows are now the values and each column is the individual person
+
+##############################################################################
+##############################################################################
+What if we want to access individual values of the dataframe?
+If we want values out of a specific column we just call it the same way as a dictionary
+i.e.- print(df['name'])
+If we wanted a specific name we can just add the index
+i.e.- print(df['name'].iloc[1])
+
+That leads us right into the .iloc[] iterator
+Whenever we want to get a values location based upon an integer value,
+We can use the .iloc[] iterator.
+Have the dataframe name, which is the column name
+Then we just choose the integer location (iloc) of the element we wish to return
+
+If we call just df.iloc[1] it returns the entire key-value pair for that index (see code)
+If we only call one row it returns a detailed version for that key-value
+Where as if we cal multiple rows it returns a sliced data frame, i.e.-> df.iloc[1:2]
+
+##############################################################################
+##############################################################################
+Finally, how can we plot these pandas dataframes?
+Same as with series just the dataframe var.plot() for a simple line chart
+If we call df.plot.plot_type() we can specify the plot type
+
+We can plot simple data sets like: df['age'].plot()
+Or we can use pandas to our advantage and just call the plot style directly on the entire data frame
+Like df.hist()
+What this does is it filters out all the columns we cant visualize,
+Then plots all the values for the different value relations
+
+So by calling df.plot() or df.hist() or df.plot.bar() is just a simple one liner to visualize our data
+
+Another way to refer to the column is df.name() which we can use instead of df['name']
+So "df.age.hist()" instead of "df['age'].hist()" but they work the same
+
+And thats the basics of plotting and visualizing our data with pandas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

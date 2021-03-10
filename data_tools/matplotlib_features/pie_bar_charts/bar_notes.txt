@@ -1,0 +1,39 @@
+How do we visualize data with Bar Charts using matplotlib?
+Bar charts are simply graphs that display data with... bars
+
+##############################################################################
+##############################################################################
+Begin by creating some tuples with values and assigning them to variables
+Next create a list of elements which those values relate to (names in this case)
+
+First we create an 'index' variable, this should be equal to the number of X values we have (names)
+Calling np.index(4) just gives us an array with 4 values
+
+Then to create our bar chart we call the plt.bar() function
+When plotting values to our bar chart the first parameter we pass is the X
+The x value should be the position of our person
+Since we only have one value for the total skill level which is the sum of the 4 skill values
+The skill level is relative to the persons name so they're indexed across the bottom
+This X value will be the 'index' variable defined above
+Using index justs says the first bar is at index n, second is at index n1, and so on
+
+The Y value is the skill
+For skills we provide the index, python variable, bar width, and a label for the legend
+plt.bar(index, python, width=0.2, label='Python')
+plt.bar(index + 0.2, java, width=0.2, label='Java')
+plt.bar(index + 0.4, networking, width=0.2, label='Networking')
+plt.bar(index + 0.6, machine_learning, width=0.2, label='Machine Learning')
+
+The above just says were plotting 4 bars for each person
+And every bar has to be shifted to the right the width of the bar
+If you notice the index doesnt stay the same, instead we shift it the width of the bar so they dont overlap
+
+##############################################################################
+##############################################################################
+Now that the barchart is full of values, we can add some styling
+We can also add axis labels
+As well as plt.xticks which are just our x value ticks (see code)
+index + 2 is so the name is centered, and we just pass the people variable to have the names included in the chart
+
+If the legend overlaps the chart values we can use plt.ylim(0, 120) as this adds more space at the top of chart
+In addition to the extra space it keeps our bars proportioned as they have a limit reference

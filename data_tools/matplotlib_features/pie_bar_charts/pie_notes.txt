@@ -1,0 +1,79 @@
+How can we visualize data with Pie Charts using Matplotib?
+
+Given a list of nationalities and a list of numbers representing the number of each
+How do we make a pie chart from this data?
+
+plt.pie(students)
+plt.show()
+
+This is all we need to make the pie chart, problem is it has no labeling or indicators of whats what
+To show which value corresponds to which slice we just add a label in the pie function call
+plt.pie(students, label=nationalities)
+
+##############################################################################
+##############################################################################
+Now to add more detail to our pie chart:
+
+Starting with the auto percentage; this is called as a keyword in the pie function
+This requires the formatting for percent which we pass as a string value
+plt.pie(students, label=nationalitites, autopct='%.2f%%')
+
+A quick styling feature we can add is 'shadow'; passed as a keyword to plt.pie()
+This adds a shadow to the entire pie chart but isnt necessary for depiction
+plt.pie(students, label=nationalitites, autopct='%.2f%%', shadow=True)
+
+##############################################################################
+##############################################################################
+Say we wanted to explode one of the slices from the pie chart?
+Before our plt.pie() function call we create an 'explode' variable
+This contains zeros at all the elements indices except the one we want exploded
+explode = [0, 0, 0.1, 0]
+0.1 is simply the degree which we explode by 0.2 = bigger gap
+
+We then just pass this list as a parameter to the plt.pie() function call
+plt.pie(students, label=nationalitites, autopct='%.2f%%', explode=explode)
+
+##############################################################################
+##############################################################################
+Now say we wanted the pie slices in ascending order instead of randomly spread
+That is we want sliceN to equal: sliceN-1 < sliceN < sliceN+1
+
+To do this we can use Pythons 'zip()' function
+This just zips the 2 collections; students, and nationalities; into a single collection
+This essentially creates a list of tuples: Inside of which is a key(students)-value(nationalities) pair
+
+Now that we have our lists relative to each other we can call the list sort function to sort them together
+Once the list is sorted we simply unzip them back into their original separate lists
+Now when we call our function the elements are already sorted upon entry
+
+Simply put, when we zip the lists together we maintain their original relations
+Therefore we maintain lists integrity when we reorder/sort them
+
+##############################################################################
+##############################################################################
+If we want our order to reverse direction we can just set the counterclock keyword arg to False
+
+Additionally we can specify the start angle by passing it as a keyword argument: 'startangle=90'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,47 @@
+How do we join or merge 2 dataframe together?
+What different kinds of joins or merges do we have?
+
+##############################################################################
+##############################################################################
+Create 2 data frames with the same column social security number, but different values (name, age)
+One dataframe with the names, and one dataframe with the ages
+
+So 2 dictionaries (see code) with the same 'SSN' values
+The key here is different dictionary items for the 2nd index in each; 'name' and 'age'
+We do this because were going to join these into a new dataframe that contains names and ages
+But each name and age have the same relative index column
+Much like SQL table relationships
+
+While our 2 dictionaries need the same keys, the keys do not need to share the same values
+Some can overlap and some don't have to, no problem
+
+Now jus convert the 2 dictionaries into dataframes
+- df(1&2) = pd.DataFrame(names&ages)
+
+Next create a new dataframe which will contain both df1 & df2 values merged together
+By calling the '.merge()' function we can join or merge the 2 dataframes, we pass df1, and df2
+But we also need to specify on which column were going to merge them, and how were going to merge them
+Column is obvious, the 'SSN'. So .merge(df1, df2, on='SSN')
+
+Now we have 4 different options on how to merge these dataframes with the 'how=' keyword
+1.(left join), 2.(inner join), 3.(outer join), 4.(right join)
+What that's saying is, 'some of the SSNs we have here, we dont have here and vice versa'
+So which ones are we going to neglect/filter/toss out from the new dataframe
+
+*'outer' is the full join, or take all of the values and merges,
+~~if df1 & df2 match SSNs, the values are linked, if not then NaN is displayed in the blank field
+
+*'left' would take all values from the first dict/collection and fill the left column
+~~any values from the 2nd dict/collection which correspond to the left column values are added
+~~all other dict1 values are assigned NaN in their empty fields
+~~~(all names and any linked ages)
+
+*'right' similar to merge left in that it fills the right column with values from the 2nd dict
+~~then fills in any empty fields on the left with values that correspond with those on the left
+~~~(all ages and any linked names)
+
+*'inner' only merges when values correspond across both lists, ignores everything else
+~~each row must have all column fields filled in for the keys to merge
+
+- df3 = pd.merge(df1, df2)
+

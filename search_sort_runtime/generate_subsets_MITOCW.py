@@ -1,6 +1,7 @@
-# Generates all possible subsets given list
-################################################################
-################################################################
+# Generates all possible subsets of a given list
+# Recursively builds permutations
+# Credit to MIT Professor (get_name) for this fascinating piece of code  
+
 def gen_subsets(k):
     """
     :param: list 'k' passed into function
@@ -18,8 +19,6 @@ def gen_subsets(k):
     return smaller + new
 
 
-################################################################
-################################################################
 gen_sub = gen_subsets([1, 2, 3, 4])
 print(gen_sub)
 print(len(gen_sub) - 1)

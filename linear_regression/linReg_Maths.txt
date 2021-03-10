@@ -1,6 +1,0 @@
-Implementations of linear regression models
-Both single variate nad multivariate
-Single Variate is almost dead accurate as of right now
-Multivariate is still under construction
-
-Thanks again to Andrew Ng, Khan Academy, and Neuralnine

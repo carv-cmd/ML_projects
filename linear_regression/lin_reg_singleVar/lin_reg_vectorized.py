@@ -23,9 +23,9 @@ t_error = []
 
 def cost_function(m, b, i):
     """
-    Called from gradient_descent() after gradient summation calculation
+    Called from gradient_descent() after summation and gradients calculations
     Passed iter(i) 'm' & 'b' params, calculates total error/cost for given params before next iter
-    Gradient descent iter_num appended to 'x_iter', plot to x-axis of CF_graph
+    Gradient descent iter_num appended to 'x_iter', plots to x-axis of CF_graph
     Total error value appended to 't_error', plots to y-axis of CF_graph
     :param m: iter(i) m from gradient descent
     :param b: iter(i) b from gradient descent

@@ -1,0 +1,97 @@
+The NumPy library includes a plethora of functions we can use to manipulate arrays
+##############################################################################
+##############################################################################
+The first category of these are 'mathematical' functions
+These are just normal mathematical functions which we apply on our array
+They apply the mathematical function/operation on all the elements within the array
+(sin, cos, tan, exp, log, sqrt, etc)
+
+##############################################################################
+##############################################################################
+The next category are 'aggregate' functions
+These give us a key statistic of our matrix/from our matrix
+
+If we were to do a.sum(, this would give us the sum of all the individual elements together
+
+If we call the max function we can get the max value from within our matrix
+
+We can find the MEAN and MEDIAN as well
+
+The final aggregate function is the standard deviation
+This just means how much does each value deviate from the mean of the array
+Or how much is each value, on average, deviating from the mean
+Very important statistical value
+
+##############################################################################
+##############################################################################
+Next are the shape 'manipulation functions', used to manipulate the shape of our array, obviously
+In this case we have a 3x3 matrix and were going to extend that by 1 element per list
+9 is not a goo number for reshaping as it only has 2 sets of factors (3x3) and (1x9)
+12 is a good number to use when reshaping (2x6), (6x2), (4x3), (3x4) due to many combinations
+
+We call the reshape function and pass a tuple with the parameter for the shape you desire
+Only restriction is we must keep them factors of the original size
+
+##############################################################################
+##############################################################################
+Other interesting functions:
+
+We can use the 'flatten' function if we want a 1 dimensional representation of our array
+This can be useful in neural networks when we need a flattened input layer
+
+Another is the 'transpose' function
+This just swaps the shape of the array
+i.e.- if our array is 3x4 and we transpose it, we get 4x3
+
+We also have the 'flat iterator', not a function, its an iterator
+It is the flattened version of our array, therefore
+We can call it in a for loop to easily iterate through it or just call an index
+Its similar to the flatten function but its just an attribute
+So it just returns the flattened version of our array
+See code for example
+
+##############################################################################
+##############################################################################
+The next category focuses on 'joining 2 arrays together into one array':
+
+First function 'np.concatenate()' joins 2 arrays together on an existing axis in the first array
+
+Another way of joining 2 arrays is 'np.stack()'
+Although this function joins the 2 arrays together on a new axis
+Creates a new dimension for the combined array
+
+In other words 'np.stack()' combines the 2 arrays into a new array
+- This^ retains the original structure
+Whereas 'np.concatenate()' combines the lists into the same array
+
+Another is the 'np.vstack' function, used to stack vertically
+
+
+And the 'np.hstack' function, used to stack horizontally
+
+##############################################################################
+##############################################################################
+We can do the opposite of joining as well, and that would be 'split' functions
+
+To use this function just call np.split()
+Parameters to pass in are the array and the number of equal parts you wish to split the array into
+Row count must be divisible by the chosen split value
+
+We can specify the axis, i.e. horizontal axis with 'np.hsplit()'
+
+##############################################################################
+##############################################################################
+The last category of functions are the ones used to 'add values or lists into our array'
+
+Since this function flattens the array to append the new list to it
+The new list must have the same dimensions for them to append with the original lists dimensions (list inside list)
+As well as we must choose the axis we wish to add the list to (axis=0)
+
+Another way to do this is by 'inserting' xyz into x
+So we say into abc, at index 1, insert mop, on axis 0
+If we set the axis=1 then it adds the list elements column-wise
+
+
+
+
+

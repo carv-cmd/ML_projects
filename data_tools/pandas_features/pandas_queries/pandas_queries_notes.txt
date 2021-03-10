@@ -1,0 +1,54 @@
+How do we query data out of dataframes?
+
+Dataframes are very similar to SQL tables
+In SQL we can just query data out of the tables in a database
+So this is how to do the same thing in pandas with dataframes
+
+Also learn how to read from CSV files into dataframes
+
+##############################################################################
+##############################################################################
+Instead of creating a dictionary then transforming it into a dataframe
+Were going to create a CSV file, then import that CSV file into pandas
+CSV is a very popular format used for uploading/saving/downloading data sets
+
+To import a CSV file simply call the read_csv function and pass our filename as a string to it
+We can also specify the delimiter, since CSV is commas make it a comma, but the option is there if we need it
+Set the index and inplace=True to create the dataframe
+- pd.read_csv('filename.csv', delimiter=',')
+
+##############################################################################
+##############################################################################
+Now how can we query data out of this data set?
+Say we want all the columns that have an age higher than 'xyz' or a height between 'this and that'
+These are things we can do with SQL statements
+i.e. An SQL query statement: "SELECT Name FROM df WHERE Age > 30"
+
+We can essentially do the same thing in dataframes
+Start by saying df.loc[]
+Inside the square brackets we put the column index we wish to query for or check the condition on
+Then the condition we wish to check for. This returns all values where condition True
+We can do this with all the math operators
+- df.loc[df['Age'] > 21]
+
+Another thing we can do is specify multiple conditions by using parenthesis and the & operator
+We can then specify say only the name column to return by adding ['column_name'] after the df.loc square brackets
+- df.loc[(df['Age'] > 21) & (df['weight'] < 140)]['age']
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

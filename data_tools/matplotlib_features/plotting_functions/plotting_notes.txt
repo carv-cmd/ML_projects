@@ -1,0 +1,34 @@
+What do we need to do to plot a function? How do we visualize data?
+
+We need to give matplotlib some x values and some y values
+Luckily a function  is just a mathematical expression which takes an input and produces an output
+In other words, a function maps an x value to a y value
+
+##############################################################################
+##############################################################################
+Start with an array of X values and run the array through a function
+This creates an array of return values which act as the Y values
+
+We then input the numpy arrays into matplotlib as the X and Y values
+We call plt.plot() with the first parameter as the x-axis and second parameter as the y-axis
+This function combines them to plot the graph as every X value has a corresponding Y value
+-To plot multiple y values for the same x just call plt.plot() with the same X and other Y
+
+We then follow it up with plt.show()
+Run the script to show the plotted values in a new window
+
+##############################################################################
+##############################################################################
+There is also methods to design our plots so they're readable by someone who didn't write the code
+
+This is done when calling the plt.plot(x, y, ) function after the x,y parameters
+The 3rd parameter specifies the style we wish to apply to the graphed function(line)
+The default styling for graphs is blue but we can change it easily: ('r'=red)-('g'=green)-('y'=yellow)
+Additionally we can change the line style: ('r-'= straight)-('r--'=dashed)-('r.'=dotted)-('ro'=pointed)
+Basically by specifying a string at the end of our plot we can choose what the plot will look like
+Letter represents the color, the character is the symbol for that specific marker(check docs)
+
+
+
+
+

@@ -1,0 +1,60 @@
+What is a Subplot?
+Essentially a subplot is one matplotlib window
+But inside that window there's 2, 4, 6, etc different plots contained within that one window
+In other words that main matplotlib window/container is filled with a bunch of subplots
+
+##############################################################################
+##############################################################################
+Referencing the code:
+We have 2 different functions that we want plotted separately (x, y1) and (x, y2)
+But we want those plots contained within the same window
+
+In order to do that we have to define subplots: plt.subplot()
+Then we just define a 3 digit numeric value inside that function call (i.e.- 211)
+Digit 1). Defines how many different rows of subplots we want
+Digit 2). Defines how many different columns we want (221 = 4 subplots)
+Digit 3). Defines index of the subplots (211 = index 1 top) (212 = index 2 bottom)
+ax1 = plt.subplot(211)
+ax2 = plt.subplot(212)
+
+Then just use these variables as the plotting variables like below:
+ax1.plot(x, y1)
+ax1.plot(x, y2)
+
+Its then wise to 'arrange' or 'pack' our window so that we don't have plots overflowing
+This can be done easily with: plt.tight_layout() function
+
+##############################################################################
+##############################################################################
+What if we want to have multiple plotting windows? Like 3 windows at the same time?
+
+We can do this by calling plt.figure() with the figure number we wish to work on
+plt.figure(1)
+plt.plot()
+plt.figure(2)
+plt.plot()
+plt.figure(3)
+plt.plot()
+plt.show() # this now displays all 3 windows at once
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

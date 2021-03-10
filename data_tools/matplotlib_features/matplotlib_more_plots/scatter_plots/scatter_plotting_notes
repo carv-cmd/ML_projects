@@ -1,0 +1,39 @@
+What are matplotlib Scatter Plots?
+Graphs which allow us to plot individual points instead of bars, lines, or pie slices
+
+We begin by defining X and Y coordinates
+When we do a scatter plot were dealing with individual data points
+Were not dealing with functions, nor bar charts
+For example we have a persons height, and a persons weight
+Plotted w/ height on y-axis, weight on x-axis
+We can then look for correlations between these data points (k-nearest-neighbor)
+
+##############################################################################
+##############################################################################
+We can pass both numpy arrays and standard python lists to the plt.scatter() function
+x = np.random.rand(50)
+y = np.random.rand(50)
+To create the scatter plot we simply call plt.scatter(x, y)
+
+##############################################################################
+##############################################################################
+Now to scatter plot styling. Things like different markers, colors, size, etc
+These are all things we can adjust within the scatter function
+
+If we wanted to change the color we just pass c='red' to the function
+
+Maybe we want x's for our markers pass marker='x' or marker='^' to the function
+Check documentation for string definitions of the different markers
+
+To change the marker size, pass the parameter s='3' to the function
+
+##############################################################################
+##############################################################################
+Scatter plots are very useful in machine learning
+For example linear regression models or classification models
+The linear regression line is a function and the classification is not a data point
+But the individual thing that were classifying or that were using for testing is are actually data points
+And data points need to be plotted with the scatter function as they're just individual data points
+
+
+

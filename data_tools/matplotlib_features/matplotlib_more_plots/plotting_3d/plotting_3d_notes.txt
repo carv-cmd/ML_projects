@@ -1,0 +1,38 @@
+Prior to this all the plotting has been done in 2 dimensions
+Now to add the third dimension or 3D Plots
+
+Along with numpy and matplotlib.pyplot an additional module will need to be imported
+from mpl_toolkits import mplot3d
+This is the module we use to create 3 Dimensional plots
+
+##############################################################################
+##############################################################################
+The first thing we need to do is define an axis where we plan to plot on
+ax = plt.axes(projections="3d")
+We specify the projection dimension with projection='3d'
+This establishes the 3 dimensional workspace/context to which we can plot values
+
+Now that were plotting in 3 different axis we need 3 different lists
+z = np.linspace(0, 30, 100)
+x = np.sin(z)
+y = np.cos(z)
+
+Then we just call the ax.plot3D() function passing our x,y,z parameters
+
+This works when plotting numpy arrays where 1 input has multiple possible outputs
+
+##############################################################################
+##############################################################################
+If we wanted to pass 2 arrays as input to a function and plot the output
+Setup the function which will process the inputs
+Instead of ax.plot3D() we use ax.plot_surface() as we now have a surface, not just a line
+
+Before we do that though we need to convert our numpy vectors into matrices
+We do that by calling the 'np.meshgrid()' function
+np.meshgrid() just converts vectors into matrices
+
+For z its just:
+Z = z_function(x, y)
+
+
+

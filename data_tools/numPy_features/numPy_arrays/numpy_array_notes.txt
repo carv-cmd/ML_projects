@@ -1,0 +1,107 @@
+NumPy is the lowest level library in terms of data science
+The more complex dataSci libraries have dependencies within the NumPy library
+It is the basis for libraries like; matplotlin, pandas, tensorflow, SKlearn, etc.
+
+NumPy alone is not enough to perform 'easy' analytics
+Its just a library that allows te efficient and effective processing of lists and arrays
+Lots of mathematics, algebra, and linear algebra.
+We need Matrices, Vectors, and a way to process these very efficiently
+NumPy is the basis for all of these features
+
+For starters create a basic numpy array
+NumPy arrays are actually quite similar to Python lists
+**This would be a four dimensional vector**
+a = np.array([1, 2, 3, 4])
+b = np.array([5, 6, 7, 8])
+
+
+Since the focus in NumPy is mathematics/algebra and vectors/matrices
+So when we add 2 lists together in Python we get a new list with all the elements
+Whereas in NumPy when we add 2 arrays together we do calculations
+
+We can also create multidimensional arrays with numpy
+**This would be a 3x3 matrix**
+c = np.array([
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+])
+If we don't know the shape of our array, we can just say print(c.shape)
+
+When we add 2 four dimensional arrays together we are doing a vector addition
+Not just adding 2 arrays together, we do calculations on the elements instead
+Therefore, a + b = [6, 8, 10, 12]
+
+And that's the basics of what numpy arrays are
+
+##############################################################################
+##############################################################################
+There are many different ways to fill up a NumPy array
+Sometimes we want to create a numpy array that has some default values,
+Or an array that's already filled with default values but we don't want to do it manually
+Say we wanted a 5x6x7x8 matrix and we can use the np.zeros() method for this
+Calling np.zeros((5, 7, 3)) creates a large matrix auto-filled with zeros
+-5 lists, each with 7 rows, and 3 elements per row
+
+We can do the same thing with ones by calling np.ones((5, 7, 3))
+
+We can also specify a value by np.full((5, 7, 3), 9)
+
+As well as np.empty() which creates a numpy array with values that are not initialized
+
+Another useful function is np.random
+We specify our array configuration then its filled with random values
+This is especially useful when were training a model and don't want a bias input
+We just pass a vector, matrix, or array of random values so we have a random starting point
+
+The above are the basic functions for creating and filling an array automatically
+
+##############################################################################
+##############################################################################
+Sometimes we want an array of values within a given range
+The code below would be a valid function:
+x = np.array([2, 3, 5, 7, 11, 13, 17])
+y = ((x/2) + (x/2))**2
+print(y)
+
+Instead of doing this manually we can use one of two functions ('.arange' or '.linspace')
+
+The first is the np.arange() method:
+.arange() is a function where we have to specify 3 parameters
+-- start value -- end value -- step size --
+i.e.- 'x = np.arange(1, 1000, 5)'
+
+The second option is the np.linspace() method:
+Again we input a minimum and maximum value but instead of a step size,
+We input how many values we want to create evenly distributed within that range
+i.e.- 'y = np.linspace(1, 1000, 10)' returns 10 values evenly distributed between 1 and 1000
+
+This is very useful when we just need a large amount of input values to test as output values
+
+##############################################################################
+##############################################################################
+Another feature is array attributes, in other words information about the array
+
+-The first of these functions is 'a.shape' which tells us the shape of the array (3x5x7)
+
+-If we wanted to know how many elements were in our array 'a.size' is the method to tell us
+
+-Our arrays data structures can differ within the array as well
+(Deprecated must specify 'dtype=object' when creating the ndarray)
+
+-Another useful feature is the a.dtype which tells us the data type of our elements
+'int32' in this case which just means an integer with 32 bits
+--We can also specify the data type at the end of the list definition (see code for placement)
+
+
+
+
+
+
+
+
+
+
+
+
+

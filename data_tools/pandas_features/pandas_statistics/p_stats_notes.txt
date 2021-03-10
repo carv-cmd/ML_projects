@@ -1,0 +1,80 @@
+How do we use Pandas Statistical functions?
+
+Start by reusing the data frame from the data_frames.py code
+Focusing particularly on the age and height as these are numerical values/numerical columns
+Therefore we can apply a number of statistical and aggregate functions on these columns
+
+##############################################################################
+##############################################################################
+One of the most basic aggregate functions is the '.count()' function
+This returns the number of values for each column
+- df.count()
+To return the number of elements in a single row just call the dataframe row instead
+- df['name'].count()
+
+Another basic function is the '.sum()' function
+This just sums up all the individual elements to one sum for that row
+i.e.- total ages, heights, combines strings
+- df.sum()
+To get the value of just one row call the dataframe row instead
+- df['age'].sum()
+
+We can do the same thing with the product
+- df['height'].product() or df['height'].prod()
+
+##############################################################################
+##############################################################################
+Now into the more statistical values
+
+Starting with the MEAN - (average)
+- df['height'].mean()
+
+Or the MEDIAN - (center-most value)
+- df['height'].median()
+The median is useful when we have alot of outliers
+Say most of our heights are around 66"(5'6")
+If we have a skyscraper at 8' it would change the MEAN but the median stays relatively the same
+*This function sorts the list before finding the center element
+
+Or the MODE - (most often)
+- df['height'].mode()
+If there are no repeating elements in the dataframe it will sort and return them in a series structure
+Otherwise it returns the element which it encountered most often
+
+Another useful function is the 'Standard Deviation'
+This just means how much 'on average' do the values deviate from the mean
+So with (8, 12) -> MEAN=10 -> Therefore,
+Since on average the values are deviating 2 from the MEAN -> StandardDeviation=2
+- df['height'].std()
+
+##############################################################################
+##############################################################################
+Another useful pair of functions are '.min()' and '.max()'
+Its easy to find the minimum value from a row by calling the min function on it
+- df['height'].min()
+Vice versa, to find the max we call the max function on the row
+- df['height'].max()
+
+How to get a 'summary' of the dataframe or 'summary' of the column?
+Calling this function produces a table with the average and standard deviation of the values
+As well as the number (25%, 50%, 75%) of values below 'n' (percentiles, see code)
+Simply takes numerical values and produces a summary of the statistical values
+- df.describe()
+- df['height'].describe()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

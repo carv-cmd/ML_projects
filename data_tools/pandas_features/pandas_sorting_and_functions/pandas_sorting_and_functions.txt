@@ -1,0 +1,101 @@
+Using functions with Pandas
+For starters import the numpy library along with pandas
+
+If we want to apply a numpy function to a dataframe column, say height
+First call the dataframe row we wish to work on
+Then with the .apply() function we can apply a numpy function to height
+
+This doesnt only work for numpy functions, it works with all kinds of functions
+But since dataframes and numpy are tight butthole its best to just use numpy functions
+Remember we don't actually call the function with (), were just referring to it
+The result is much like a dataframe series
+- df['height'].apply(np.sin)
+
+##############################################################################
+##############################################################################
+Another way to apply operations to columns is to use 'lambda expressions'
+
+We begin by calling the column same as before
+Except this time within the .apply() we pass a lambda expression
+So lambda is the keyword, then we define our variable 'x'
+This variable now represents all the individual elements in that column
+Then we just say what happens to each of those variables, i.e. x**2
+- df['height'].apply(lambda x: x**2)  # This just squares all the x values
+
+##############################################################################
+##############################################################################
+The next topic is 'iterating over dataframes'
+There are multiple ways to do this, the most intuitive being
+- for x in df:
+    print(x)
+And while this works we only get the keys/indices or the row names
+That just returns name, age, height, gender with no information
+We could do: for x in df['age']: to get all the age values as it iterates over the column
+
+There are much more professional/pythonic ways to iterate over dataframes though
+We can instead say 'for' and instead use tuple unpacking to iterate over the dataframe
+We specify for 2 things, the key, and the values
+Then specify the dataframe column and assign the .iteritems() function on the dataframe
+Which says for every key and value in dataframe column, print values
+Remember the keys are the indices, or unique id's assigned to each element
+- for key, value in df['age'].iteritems():
+    print(key, value)
+
+This works as well for the whole dataframe, so don't pick a column
+- for key, value in df.iteritems():
+    print(key, value)
+
+We can iterate over the rows as well by calling .iterrows() instead
+If we call it on the complete data frame it returns each person with all their attributes listed
+Basically a detailed view of each element
+- for row in df.iterrows():
+    print(row)
+
+##############################################################################
+##############################################################################
+Now onto pandas 'sorting' functions
+A dataframe can be sorted in multiple ways, can sort by index or by values
+
+Sorting by index, say our indices are out of order like: [1115, 1112, 1111, 1113, 1114]
+By printing our data frame we will see the the values unsorted
+If we move one index we must move all of its relative values as well
+To solve this problem we simply call the .sort_index() function
+Specify the keyword inplace=True for the change to be applied to the initial dataframe
+- df.sort_index(inplace=True)
+
+We can also sort by values if were not interested in the indices by calling df.sort_values()
+Call df.sort_values(by=['']) then we can specify the 'by=' parameter
+Then we open a list and pass the columns, if we specify one column, that's what df is sorted by
+For instance though, how to differentiate between 2 people with the same name?
+Pass another column to sort by, if x and y are equal, sort by xz and yz
+Can specify inplace=True here as well to apply change to initial dataframe
+So if we want to always sort by name, then age see code below
+- df.sort_values(by=['name', 'age'])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

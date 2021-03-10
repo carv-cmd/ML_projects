@@ -1,0 +1,63 @@
+What does it mean to style our plots?
+Things like labeling, choosing colors, enabling specific plotting style features
+Basically how to make our plots more user friendly and human readable
+
+##############################################################################
+##############################################################################
+For starters we need to import the regular numpy and matplotlib.pyplot libraries
+Additionally we need 'from matplotlib import styles' to do our styling
+
+To change the default styles we call a function like:
+style.use('ggplot') where we pass a string to the function which is the style name
+'ggplot' or 'fivethirtyeight' are common style choices
+Essentially we can use the styles within matplotlib if we don't care to create our own
+
+To find these styles go to: matplotlib stylesheet reference documentation, link below
+https://matplotlib.org/3.1.1/gallery/style_sheets/style_sheets_reference.html
+
+So we can chose one of the themes in the link above
+Or create our own by adjusting all the different parameters
+--font size, background color, label size, line weight, line style, grid or not, etc.
+
+If we want to remove the preset grid some styles come with or add a grid to ones that don't
+We simply just activate or deactivate the grid feature: plt.grid(True) or plt.grid(False)
+
+##############################################################################
+##############################################################################
+Now that our plot is styled, how and what do we label?
+Things like a title and axis labels
+
+To label our plot we just call plt.title("title_name")
+
+If we want to add a super title, that is a title for the window not the graph
+We can call plt.suptitle("super_title_name")
+
+##############################################################################
+##############################################################################
+Finally we can specify a 'legend' or a graph key
+
+To create this we simply add a 'label=' keyword argument in our plt.plot() function call
+We pass a string value of the plot name for the label parameter
+
+We then call the plt.legend() function and pass the location as a string to the 'loc=' keyword
+The common legend locations listed below
+-('upper left')-('upper right')-('lower left')-('lower right')-('center left')-('center right')-
+
+Basically anytime we plot something we can specify a label
+That label is then used in the legend
+
+##############################################################################
+##############################################################################
+That's the basics of matplotlib styling
+Theres many more things to do such like:
+-Background colors
+-Face colors
+-etc
+
+
+
+
+
+
+
+

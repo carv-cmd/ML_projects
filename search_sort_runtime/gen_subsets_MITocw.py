@@ -1,6 +1,7 @@
 # Generates all possible subsets of a given list
-# Recursively builds permutations
-# Credit to MIT Professor (get_name) for this fascinating piece of code  
+# Recursively builds these permutations
+# Credit to MIT Professor (get_name) for this fascinating piece of code
+
 
 def gen_subsets(k):
     """
@@ -19,6 +20,8 @@ def gen_subsets(k):
     return smaller + new
 
 
-gen_sub = gen_subsets([1, 2, 3, 4])
-print(gen_sub)
-print(len(gen_sub) - 1)
+super_list = [1, 2, 3, 4]
+gen_sub = gen_subsets(super_list)
+print(f'\nSubsets of {super_list}'
+      f'\n---------------------------\n{gen_sub}')
+print(f'\nNumber of Subsets: {len(gen_sub) - 1}')

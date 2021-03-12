@@ -1,0 +1,76 @@
+Logistic Regression ~~ Classification Problems
+
+Classification
+ - Email: Spam / Not Spam ?
+ - Online Transactions: Fraudulent (Yes/No) ?
+ - Tumor: Malignant / Benign ?
+
+We can therefore thing of Y ∈ {0, 1}.
+Where:
+ - 0: "Negative Class" (i.e.- benign tumor)
+ - 1: "Positive Class" (i.e.- malignant tumor)
+
+While the assignment of classes to +/- is kind of arbitrary
+The unofficial convention/intuition is that:
+ - 0:NegativeClass: indicates the absence of something we may be looking for
+ - 1:PositiveClass: indicates the presence of something we may be looking for
+
+Later on MultiClass Classification Problems will be covered
+Where: Y ∈ {0, 1, 2, 3}
+Until then lets focus on the 'binary' classification problem Y ∈ {0, 1}
+
+When thinking about how to model this problem well use the tumor example
+Where:
+- x-axis = TumorSize (range: small to large)
+- y-axis = Malignant (range:   yes or no)
+
+Linear Regression is inaccurate when trained on classification data sets
+Since our data points are either a 1 or 0 this results in the requirement a binary output as well
+With the Logistic Regression algorithm we can get prediction values between 1 or 0
+Logistic Regression: 0 <= h_θ(x) <= 1
+Also known as Logistic Classification
+
+---------------------------------------------------------------------------
+---------------------------------------------------------------------------
+Hypothesis Representation for Logistical Regression
+I.E.- What is the 'function' that were going to use to represent our hypothesis of classification problems
+
+Logistic Regression Model
+ Want: 0 <= h_θ(x) <= 1
+
+Where we would like our classifier to output values between 0 and 1
+So we want a hypothesis that satisfies this property where predictions are between 0 and 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

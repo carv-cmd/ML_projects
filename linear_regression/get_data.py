@@ -16,7 +16,7 @@ if __name__ == "__main__":
             os.chdir(target_directory)
             print(f'\nCurrent Working Directory: "{os.getcwd()}"\n{os.listdir()}\n')
             file_name = str(input("Enter file name for dataSet in PyData: "))
-            chk_data = pd.read_csv(file_name, delimiter=',')
+            chk_data = pd.read_csv(file_name, delimiter=',').to_numpy()
             os.chdir(reset_cwdir)
             print(f'\nData:\n{chk_data.head(10)}\n'
                   f'\nChecking')

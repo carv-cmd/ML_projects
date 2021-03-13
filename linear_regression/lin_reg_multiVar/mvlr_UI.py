@@ -1,7 +1,7 @@
 # User Input for Multivariate Linear Regression Model
 import matplotlib.pyplot as plt
 from matplotlib import style
-from multi_lin_reg import *
+# from multi_lin_reg import *
 
 
 ####################################################

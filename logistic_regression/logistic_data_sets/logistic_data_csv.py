@@ -5,7 +5,7 @@ import os
 import pandas as pd
 
 reset_cwd = os.getcwd()
-target_dir = r'C:\Users\benca\Documents\PyData\LogisticalRegression'
+target_dir = r'C:\Users\benca\Documents\PyData\LogisticRegression'
 
 if __name__ == "__main__":
     print(f'\nTarget Directory:\n{target_dir}\n'

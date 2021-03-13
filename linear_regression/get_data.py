@@ -16,10 +16,9 @@ if __name__ == "__main__":
             os.chdir(target_directory)
             print(f'\nCurrent Working Directory: "{os.getcwd()}"\n{os.listdir()}\n')
             file_name = str(input("Enter file name for dataSet in PyData: "))
-            chk_data = pd.read_csv(file_name, delimiter=',').to_numpy()
+            chk_data = pd.read_csv(file_name, delimiter=',')
             os.chdir(reset_cwdir)
-            print(f'\nData:\n{chk_data.head(10)}\n'
-                  f'\nChecking')
+            print(f'\nData:\n{chk_data.head(25)}\n')
             break
         except FileNotFoundError:
             print(f'\n!!! File search failed !!!\nMake sure directory path and file name are correct!'
@@ -33,8 +32,10 @@ else:
         try:
             os.chdir(target_directory)
             print(f'\nCurrent Working Directory: "{os.getcwd()}"\n{os.listdir()}\n')
-            file_name = str(input("Enter file name for dataSet in PyData: "))
+            # file_name = str(input("Enter file name for dataSet in PyData: "))
+            file_name = 'multivariate_data.csv'
             data = pd.read_csv(f"{file_name}", delimiter=',').to_numpy()
+            print(f'\nDataPulled:\n{data}\n')
             os.chdir(reset_cwdir)
             break
         except FileNotFoundError:

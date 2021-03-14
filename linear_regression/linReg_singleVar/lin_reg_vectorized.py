@@ -1,37 +1,14 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import style
-from get_data import data
+from get_data_multi import data
 
 
 # get_data import will prompt user for data file
-# converted to numpy ndarray for vectorized operations
-num_rows = np.shape(data)[0]
-num_col = np.shape(data)[1]
+# parse by column for element-by-element operations
+x = data[:, 0]
+y = data[:, 1]
 
-# Columns parsed, offset due to the requirement of (x0 == 1 for all)
-x0 = np.ones(num_rows, dtype=int)
-
-# Parse data for processing store initially in x(i's) variables
-x1, y = data[:, 0], data[:, 1]
-
-# Create feature matrix
-matrix_X = np.array([x0, x1])
-transpose_X = np.transpose(matrix_X)
-
-print(f'\nMatrixX:\n{matrix_X}\nTransposeX\n{transpose_X}\n'
-      f'\nMatrixX.shape:{matrix_X.shape}\n'
-      f'\nTransposeX.shape:{transpose_X.shape}')
-
-m_dot_t = matrix_X.dot(transpose_X)
-
-mdt_inverse = np.linalg.inv(m_dot_t)
-
-transpose_XY = transpose_X.dot(np.array(y))
-
-print(f'\nm_dot_t:\n{m_dot_t}\n'
-      f'\nmdt_inverse:\n{mdt_inverse}\n'
-      f'\ntransposeY:\n{transpose_XY}')
 
 ####################################################
 ####################################################
@@ -62,7 +39,7 @@ def cost_function(m, b, i):
 
 ####################################################
 ####################################################
-def gradient_descent(L):
+def gradient_descent(L, epoch=10):
     """
     Uses numpy to 'horizontally' calculate total hypothesis error for given feature vectors
     Store temp 'm_grad'/'b_grad' vars while calculating hypothesis for each data point
@@ -74,7 +51,7 @@ def gradient_descent(L):
     m, b = 0, 0
     # iteration for gradient steps. Determined by global Epoch
     size = len(data)
-    for i in range(Epoch):
+    for i in range(epoch):
         m_grad = (1/size) * x * ((b + (m * x)) - y)
         b_grad = (1/size) * (b + (m * x)) - y
         m -= L * (m_grad.sum())
@@ -85,38 +62,36 @@ def gradient_descent(L):
 
 ####################################################
 ####################################################
-L = .0001
-Epoch = 10
-# m, b = gradient_descent(L)
+if __name__ == "__main__":
+    L = .0001
+    Epoch = 10
+    m, b = gradient_descent(L, Epoch)
 
-# x_array = np.linspace(x.min() - 2, x.max() + 2, 100)
-# y_prediction = b + (m * x_array)
-#
-# print(f'\nOptimal Values for Thetas(m & b):\nm = {m}\nb = {b}')
-#
-# ###################################################
-# ###################################################
-# style.use('ggplot')
-#
-# fig = plt.figure(figsize=(6, 9))
-# gd_ax1 = fig.add_subplot(211)
-#
-# cf_ax2 = fig.add_subplot(212)
-#
-# fig.suptitle(f"Linear_Reg (Pure Maths Implementation)"
-#              f"\n(m = {round(m, 4)}) & (b = {round(b, 4)})", fontsize=12)
-#
-# gd_ax1.set_title('Hypothesis Result', fontsize=10)
-# gd_ax1.set_xlabel('Density', fontsize=8)
-# gd_ax1.set_ylabel('Price', fontsize=8)
-# gd_ax1.plot(x, y, '.')
-# gd_ax1.plot(x_array, y_prediction, 'b')
-#
-# cf_ax2.set_title("Cost Function", fontsize=10)
-# cf_ax2.set_xlabel("Iterations", fontsize=8)
-# cf_ax2.set_ylabel("Total Error", fontsize=8)
-# cf_ax2.plot(x_iter, t_error, 'b-')
+    x_array = np.linspace(x.min() - 2, x.max() + 2, 100)
+    y_prediction = b + (m * x_array)
 
-# if __name__ == "__main__":
-#     plt.tight_layout()
-#     plt.show()
+    print(f'\nOptimal Values for Thetas(m & b):\nm = {m}\nb = {b}')
+
+    style.use('ggplot')
+
+    fig = plt.figure(figsize=(6, 9))
+    gd_ax1 = fig.add_subplot(211)
+
+    cf_ax2 = fig.add_subplot(212)
+
+    fig.suptitle(f"Linear_Reg (Pure Maths Implementation)"
+                 f"\n(m = {round(m, 4)}) & (b = {round(b, 4)})", fontsize=12)
+
+    gd_ax1.set_title('Hypothesis Result', fontsize=10)
+    gd_ax1.set_xlabel('Density', fontsize=8)
+    gd_ax1.set_ylabel('Price', fontsize=8)
+    gd_ax1.plot(x, y, '.')
+    gd_ax1.plot(x_array, y_prediction, 'b')
+
+    cf_ax2.set_title("Cost Function", fontsize=10)
+    cf_ax2.set_xlabel("Iterations", fontsize=8)
+    cf_ax2.set_ylabel("Total Error", fontsize=8)
+    cf_ax2.plot(x_iter, t_error, 'b-')
+    plt.tight_layout()
+    plt.show()
+

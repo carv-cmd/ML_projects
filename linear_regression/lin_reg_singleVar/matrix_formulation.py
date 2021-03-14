@@ -19,7 +19,19 @@ x1, y = data[:, 0], data[:, 1]
 matrix_X = np.array([x0, x1])
 transpose_X = np.transpose(matrix_X)
 
-print(f'\nMatrixX:\n{matrix_X}\nTransposeX\n{transpose_X}')
+print(f'\nMatrixX:\n{matrix_X}\nTransposeX\n{transpose_X}\n'
+      f'\nMatrixX.shape:{matrix_X.shape}\n'
+      f'\nTransposeX.shape:{transpose_X.shape}')
+
+m_dot_t = matrix_X.dot(transpose_X)
+
+mdt_inverse = np.linalg.inv(m_dot_t)
+
+transpose_XY = transpose_X.dot(np.array(y))
+
+print(f'\nm_dot_t:\n{m_dot_t}\n'
+      f'\nmdt_inverse:\n{mdt_inverse}\n'
+      f'\ntransposeY:\n{transpose_XY}')
 
 ####################################################
 ####################################################

@@ -63,7 +63,7 @@ if __name__ == "__main__":
     print(f'\nOptimal Values for Thetas(m & b):\nm = {m}\nb = {b}')
 
     style.use('ggplot')
-
+    plt.figure(figsize=(12, 8))
     plt.suptitle(f"Linear_Reg (Pure Maths Implementation)"
                  f"\n(m = {m}) & (b = {b})", fontsize=12)
 

@@ -4,7 +4,7 @@ import logging as logs
 
 logs.basicConfig(filename='dataSets.log', filemode='w', level=logs.INFO)
 
-n = 500
+n = 25000
 
 x, y = make_regression(n_samples=n, n_features=1, noise=75)
 

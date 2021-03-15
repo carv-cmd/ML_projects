@@ -1,5 +1,5 @@
 import numpy as np
-from get_data import data
+from get_data_multi import data
 import logging as logs
 
 logs.basicConfig(filename='multi_lin_reg.log', filemode='w', level=logs.INFO)

@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import style
-from get_data_multi import data
+from make_dataSets import data
 
 
 # get_data import will prompt user for data file

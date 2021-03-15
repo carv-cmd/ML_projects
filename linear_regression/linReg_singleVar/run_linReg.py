@@ -1,13 +1,12 @@
 from linReg_iterative import *
 from linReg_matrixOps import *
-from save_agent import save_function
 
 
 ####################################################
 ####################################################
 # Linear Regression Model ~~ Iterative Implementation
 L = .0001
-Epoch = 10
+Epoch = 1000
 m_iter, b_iter = gradient_descent(L, Epoch)
 print(f"\nOptimal Values for Theta's (Iterative Solution):\nm = {m_iter}\nb = {b_iter}\n")
 
@@ -53,9 +52,7 @@ if __name__ == "__main__":
     cf_ax3.set_title('Iterative Cost Function')
     cf_ax3.set_xlabel('Iterations', fontsize=6)
     cf_ax3.set_ylabel('Total Error', fontsize=6)
-    cf_ax3.plot(x_iter, t_error, 'b..')
+    cf_ax3.plot(x_iter, t_error, 'r')
 
     plt.tight_layout()
     plt.show()
-
-    save_function()

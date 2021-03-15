@@ -24,12 +24,13 @@ def plotter():
 ####################################################
 n = int(input("\nEnter Size(n) of training examples: "))
 # noisy = int(input("\nDesired Noise of dataSet: "))
-noisy = 30
+noisy = 25
 
 x_gen, y_gen = make_regression(n_samples=n, n_features=1, noise=noisy)
 
 x_gen = x_gen.reshape(n)
 y_gen = y_gen.reshape(n)
+
 x_gen *= 500
 y_gen *= 500
 

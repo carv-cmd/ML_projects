@@ -5,8 +5,9 @@ from linReg_matrixOps import *
 ####################################################
 ####################################################
 # Linear Regression Model ~~ Iterative Implementation
+# If features have any size what so ever to them this solution will fail
 L = .0001
-Epoch = 1000
+Epoch = 150
 m_iter, b_iter = gradient_descent(L, Epoch)
 print(f"\nOptimal Values for Theta's (Iterative Solution):\nm = {m_iter}\nb = {b_iter}\n")
 

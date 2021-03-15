@@ -3,7 +3,7 @@ from sklearn.datasets import make_regression
 import pandas as pd
 import matplotlib.pyplot as plt
 
-logs.basicConfig(filename='dataSets.log', filemode='w', level=logs.INFO)
+# logs.basicConfig(filename='dataSets.log', filemode='w', level=logs.INFO)
 
 
 ####################################################
@@ -30,16 +30,16 @@ x_gen, y_gen = make_regression(n_samples=n, n_features=1, noise=noisy)
 
 x_gen = x_gen.reshape(n)
 y_gen = y_gen.reshape(n)
-x_gen *= 100
-y_gen *= 100
+x_gen *= 500
+y_gen *= 500
 
 train_set = pd.DataFrame([x_gen, y_gen]).transpose()
 
-logs.info(f'\n----------------DataSetGenerated----------------'
-          f'\nData Attributes:'
-          f'\ntrain_set.size: {train_set.size}'
-          f'\ntrain_set.shape: {train_set.shape}\n'
-          f'\n{train_set}\n')
+# logs.info(f'\n----------------DataSetGenerated----------------'
+#           f'\nData Attributes:'
+#           f'\ntrain_set.size: {train_set.size}'
+#           f'\ntrain_set.shape: {train_set.shape}\n'
+#           f'\n{train_set}\n')
 
 ####################################################
 ####################################################

@@ -38,13 +38,13 @@ def matrix_ops():
 
     theta = mdt_inverse.dot(transpose_xy)  # (6)
 
-    logs.info(f'\n*********** MatrixResults ***********'
-              f'\nMatrixX: (shape: {matrix_x.shape})'
-              f'\nTransposeX: (shape: {transpose_x.shape})\n'
-              f'\nm_dot_t:\n{m_dot_t}\n'
-              f'\nmdt_inverse:\n{mdt_inverse}\n'
-              f'\ntranspose_xy: (shape: {transpose_xy.shape})\n{transpose_xy}\n'
-              f'\nOptimal Values for Theta0/1:\n{theta}')
+    # logs.info(f'\n*********** MatrixResults ***********'
+    #           f'\nMatrixX: (shape: {matrix_x.shape})'
+    #           f'\nTransposeX: (shape: {transpose_x.shape})\n'
+    #           f'\nm_dot_t:\n{m_dot_t}\n'
+    #           f'\nmdt_inverse:\n{mdt_inverse}\n'
+    #           f'\ntranspose_xy: (shape: {transpose_xy.shape})\n{transpose_xy}\n'
+    #           f'\nOptimal Values for Theta0/1:\n{theta}')
 
     return theta
 

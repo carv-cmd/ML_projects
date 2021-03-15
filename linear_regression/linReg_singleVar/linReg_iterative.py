@@ -1,11 +1,14 @@
+# from get_data_single import data
+from make_dataSets import train_set as data
 import numpy as np
-import matplotlib.pyplot as plt
+from make_dataSets import plt
 from matplotlib import style
-from make_dataSets import data
+from save_agent import save_function
 
-
-# get_data import will prompt user for data file
+# make_dataSets will generate test data on call.
+# Use get_data to import previously generated sets
 # parse by column for element-by-element operations
+data = data.to_numpy()
 x = data[:, 0]
 y = data[:, 1]
 
@@ -95,3 +98,4 @@ if __name__ == "__main__":
     plt.tight_layout()
     plt.show()
 
+    save_function()

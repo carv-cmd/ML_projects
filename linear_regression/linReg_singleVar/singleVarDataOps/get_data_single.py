@@ -1,9 +1,10 @@
 # Read data from CSV files stored in a different directory than the current working directory
-# For ease of use, create a 'PyData' directory in '\user\Documents' and change abs path to fit your machine
+# If dataSets.csv have been previously generated, use this to import data to the environment
+# Change commenting of import statements in linReg_matrixOps or linReg_iterative to activate
 import pandas as pd
 import os
 
-target_directory = r'C:\Users\benca\Documents\PyData\SingleVariate'
+target_directory = r"C:\Users\benca\Documents\(** your_directory **)"
 reset_cwdir = os.getcwd()
 
 if __name__ == "__main__":

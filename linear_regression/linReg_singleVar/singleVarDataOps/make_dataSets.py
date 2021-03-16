@@ -34,16 +34,19 @@ y_gen = y_gen.reshape(n)
 x_gen *= 500
 y_gen *= 500
 
-train_set = pd.DataFrame([x_gen, y_gen]).transpose()
-
-# logs.info(f'\n----------------DataSetGenerated----------------'
-#           f'\nData Attributes:'
-#           f'\ntrain_set.size: {train_set.size}'
-#           f'\ntrain_set.shape: {train_set.shape}\n'
-#           f'\n{train_set}\n')
-
 ####################################################
 ####################################################
 if __name__ == "__main__":
+    train_set = pd.DataFrame([x_gen, y_gen]).transpose()
+
+    # logs.info(f'\n----------------DataSetGenerated----------------'
+    #           f'\nData Attributes:'
+    #           f'\ntrain_set.size: {train_set.size}'
+    #           f'\ntrain_set.shape: {train_set.shape}\n'
+    #           f'\n{train_set}\n')
+
     plotter()
 
+else:
+    # See if the transpose here was causing the weird X'Y calculation
+    train_set = pd.DataFrame([x_gen, y_gen]).transpose()

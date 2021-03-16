@@ -64,15 +64,18 @@ class GenDataFrame(GenData):
     Call "make_df" method to create pd.DataFrame with set/default attributes
     Object created is 'matrix-like' data structure allowing for easy manipulation w/ LinAlg libraries
     """
-
     def __init__(self):
         super().__init__()
 
     def set_all(self):
+        """ 'set_all' method """
         user_n = int(input("\nEnter the desired set size: "))
         user_feats = int(input("Enter the desired number of features: "))
         user_noise = int(input("Enter the desired noise: "))
         self.setting_all(user_n, user_feats, user_noise)
+
+    def auto_gen(self, *args):
+        self.setting_all(args[0], args[1], args[2])
 
     def gen_df(self):
         """ Sets the values for gen_reg and creates pandas DataFrame """
@@ -90,32 +93,31 @@ class GenDataFrame(GenData):
                f'** df.ndim:({df_attrs[3]}) **' \
                f'\ntype(df): {type(df_attrs[0])}\n' \
                f'\n---------------------------------------------------------\n' \
-               f'{df_attrs[0].head(10)}'
+               f'{df_attrs[0]}' \
+               f'\n---------------------------------------------------------\n'
 
 
 ####################################################
 ####################################################
-def tester_set():
-    """
-    Initializes GenDataSet object instance
-    Prompts for default or custom attribute values
-    :returns: Pandas DataFrame object
-    """
-    daters = GenDataFrame()
-    ye_change = ['yes', 'y', 'yes ', 'ys', 'ye', 'es']
-    change = str(input("\nWould you like to change to default values? (y/n): ")).lower()
-    if change not in ye_change:
-        daters.gen_df()
-        return daters
-    else:
-        daters.set_all()
-        daters.gen_df()
-        return daters
+if __name__ == "__main__":
+    def tester_set():
+        """
+        Initializes GenDataSet object instance
+        Prompts for default or custom attribute values
+        :returns: Pandas DataFrame object
+        """
+        daters = GenDataFrame()
+
+        ye_change = ['yes', 'y', 'yes ', 'ys', 'ye', 'es']
+        change = str(input("\nWould you like to change to default values? (y/n): ")).lower()
+        if change not in ye_change:
+            daters.gen_df()
+            return daters
+        else:
+            daters.set_all()
+            daters.gen_df()
+            return daters
 
 
-####################################################
-####################################################
-if __name__ == '__main__':
-    for i in range(5):
-        data = tester_set()
-        print(f'\ntype(datas):: {type(data)}\n{data}\n')
+    data = tester_set()
+    print(data)

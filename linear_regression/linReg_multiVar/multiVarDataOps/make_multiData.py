@@ -48,11 +48,11 @@ class GenData(object):
         """ Pass desired sampleSize (integer) to .set_noise() method """
         self.noisy = user_noise
 
-    def setting_all(self, *args):
-        """ Calling this method requires the attribute values to be passed with it """
-        self.set_n(args[0])
-        self.set_features(args[1])
-        self.set_noise(args[2])
+    def set_all(self, new_n, new_f, new_no):
+        """ 'set_all' method """
+        self.set_n(new_n)
+        self.set_features(new_f)
+        self.set_noise(new_no)
 
 
 ####################################################
@@ -67,15 +67,8 @@ class GenDataFrame(GenData):
     def __init__(self):
         super().__init__()
 
-    def set_all(self):
-        """ 'set_all' method """
-        user_n = int(input("\nEnter the desired set size: "))
-        user_feats = int(input("Enter the desired number of features: "))
-        user_noise = int(input("Enter the desired noise: "))
-        self.setting_all(user_n, user_feats, user_noise)
-
     def auto_gen(self, *args):
-        self.setting_all(args[0], args[1], args[2])
+        self.set_all(args[0], args[1], args[2])
 
     def gen_df(self):
         """ Sets the values for gen_reg and creates pandas DataFrame """
@@ -114,7 +107,7 @@ if __name__ == "__main__":
             daters.gen_df()
             return daters
         else:
-            daters.set_all()
+            daters.set_all(50, 6, 25)
             daters.gen_df()
             return daters
 

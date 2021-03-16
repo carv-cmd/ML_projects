@@ -16,7 +16,7 @@ class GenData(object):
     """
     def __init__(self):
         self.df = pd.DataFrame()
-        self.n = 50
+        self.n = 100
         self.features = 2
         self.noisy = 25
 
@@ -33,10 +33,8 @@ class GenData(object):
         return self.noisy
 
     def get_all(self):
-        print('\n\n--------------DataSet Attributes--------------'
-              f'\nSample_Size: {self.get_n()}'
-              f'\nSetFeatures: {self.get_features()}'
-              f'\nSetNoise: {self.get_noise()}\n')
+        """ Returns all attributes for the GenData object instance """
+        return self.get_n(), self.get_features(), self.get_noise()
 
     def set_n(self, user_n):
         """ Pass desired sampleSize (integer) to .set_n() method """
@@ -57,6 +55,8 @@ class GenData(object):
         self.set_noise(args[2])
 
 
+####################################################
+####################################################
 class GenDataFrame(GenData):
     """
     Generates random dataSets for use with multivariate linear regression models
@@ -74,7 +74,7 @@ class GenDataFrame(GenData):
         user_noise = int(input("Enter the desired noise: "))
         self.setting_all(user_n, user_feats, user_noise)
 
-    def set_df(self):
+    def gen_df(self):
         """ Sets the values for gen_reg and creates pandas DataFrame """
         features, y = gen_reg(n_samples=self.get_n(), n_features=self.get_features(), noise=self.get_noise())
         formed = np.concatenate((features, y.reshape(self.get_n(), 1)), axis=1)
@@ -90,9 +90,11 @@ class GenDataFrame(GenData):
                f'** df.ndim:({df_attrs[3]}) **' \
                f'\ntype(df): {type(df_attrs[0])}\n' \
                f'\n---------------------------------------------------------\n' \
-               f'{df_attrs[0]}'
+               f'{df_attrs[0].head(10)}'
 
 
+####################################################
+####################################################
 def tester_set():
     """
     Initializes GenDataSet object instance
@@ -103,15 +105,17 @@ def tester_set():
     ye_change = ['yes', 'y', 'yes ', 'ys', 'ye', 'es']
     change = str(input("\nWould you like to change to default values? (y/n): ")).lower()
     if change not in ye_change:
-        daters.set_df()
+        daters.gen_df()
         return daters
     else:
         daters.set_all()
-        daters.set_df()
+        daters.gen_df()
         return daters
 
 
-datas = tester_set()
-
-print(f'\ntype(datas):: {type(datas)}\n{datas}')
-# print(f'\ntype(datas):: {type(datas.df)}\n{datas.df}')
+####################################################
+####################################################
+if __name__ == '__main__':
+    for i in range(5):
+        data = tester_set()
+        print(f'\ntype(datas):: {type(data)}\n{data}\n')
